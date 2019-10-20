@@ -1,3 +1,6 @@
+airq-eye:
+    update-frequency-in-minutes: 10
+
 server:
     port: 9000
 management:

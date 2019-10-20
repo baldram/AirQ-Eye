@@ -19,6 +19,7 @@ import java.util.Optional;
 
 import static java.util.Collections.singletonList;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.catchThrowable;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.verify;
@@ -26,6 +27,10 @@ import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class MeasurementServiceTest {
+
+    private static final long INSTALLATION_ID = 123L;
+    private static final long NOT_EXISTING_INSTALLATION_ID = 666L;
+    private static final String NOT_EXISTING_INSTALLATION_MESSAGE = "Could not find installation %s";
 
     @Mock
     private InstallationRepository installationRepository;
@@ -65,10 +70,36 @@ public class MeasurementServiceTest {
     }
 
     @Test
+    public void retrieveMeasurementsForSpecifiedInstallation() {
+        // Given
+        final List<Measurement> measurements = singletonList(Measurement.builder().id(1L).build());
+        final Optional<Installation> installation = Optional.of(Installation.builder()
+                .supplierInstallationId(INSTALLATION_ID).measurements(measurements).build());
+        when(installationRepository.findByProvider(eq(Supplier.LUFTDATEN), eq(INSTALLATION_ID))).thenReturn(installation);
+
+        // When
+        final List<Measurement> result = measurementService.retrieveMeasurements(INSTALLATION_ID, Supplier.LUFTDATEN);
+
+        // Then
+        assertThat(result).isEqualTo(measurements);
+    }
+
+    @Test
+    public void throwErrorIfSpecifiedInstallationNotFound() {
+        // When
+        final Throwable expectedError = catchThrowable(() ->
+                measurementService.retrieveMeasurements(NOT_EXISTING_INSTALLATION_ID, Supplier.LUFTDATEN));
+
+        // Then
+        assertThat(expectedError).isInstanceOf(InstallationNotFoundException.class)
+                .hasMessageContaining(String.format(NOT_EXISTING_INSTALLATION_MESSAGE, NOT_EXISTING_INSTALLATION_ID));
+    }
+
+    @Test
     public void removeData() {
         // Given
         final Supplier dataProvider = Supplier.LUFTDATEN;
-        final Installation installation = Installation.builder().id(666L).build();
+        final Installation installation = Installation.builder().id(1L).build();
         when(installationRepository.findByProvider(eq(dataProvider))).thenReturn(Collections.singletonList(installation));
 
         // When

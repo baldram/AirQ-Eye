@@ -1,5 +1,6 @@
 package pl.itrack.airqeye.store.dataclient.luftdaten.service;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
@@ -9,6 +10,7 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.test.util.ReflectionTestUtils;
 import pl.itrack.airqeye.store.dataclient.luftdaten.LuftdatenClient;
 import pl.itrack.airqeye.store.dataclient.luftdaten.mapper.MeasurementMapper;
 import pl.itrack.airqeye.store.dataclient.luftdaten.model.LuftdatenMeasurement;
@@ -17,6 +19,7 @@ import pl.itrack.airqeye.store.measurement.enumeration.Supplier;
 import pl.itrack.airqeye.store.measurement.service.MeasurementService;
 
 import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.List;
 
 import static java.util.Collections.singletonList;
@@ -31,7 +34,7 @@ import static org.mockito.Mockito.when;
 public class LuftdatenServiceTest {
 
     private static final LocalDateTime PAST_DATE = LocalDateTime.of(2000, 1, 1, 0, 0, 0);
-    private static final LocalDateTime FUTURE_DATE = LocalDateTime.of(9999, 1, 1, 0, 0, 0);
+    private static final int DATA_REFRESH_RANGE = 10;
 
     @Mock
     private LuftdatenClient luftdatenClient;
@@ -53,6 +56,12 @@ public class LuftdatenServiceTest {
 
     @InjectMocks
     private LuftdatenService luftdatenService = new LuftdatenService();
+
+    @Before
+    public void setUp() {
+        // with Mockito there is a difficulty to mock the Spring's configuration property injected using @Value annotation
+        ReflectionTestUtils.setField(luftdatenService, "updateFrequencyInMinutes", DATA_REFRESH_RANGE);
+    }
 
     @Test
     public void retrieveData() {
@@ -103,7 +112,10 @@ public class LuftdatenServiceTest {
         // Given
         getRetrievedDataMock();
         getConvertedDataMock();
-        when(measurementService.getLatestUpdate(eq(Supplier.LUFTDATEN))).thenReturn(FUTURE_DATE);
+        // Date on border of validity, but still refresh not required.
+        // This test helps to verify whether time zone is considered while calculating validity.
+        final LocalDateTime dateInValidRange = LocalDateTime.now(ZoneOffset.UTC).minusMinutes(DATA_REFRESH_RANGE - 1);
+        when(measurementService.getLatestUpdate(eq(Supplier.LUFTDATEN))).thenReturn(dateInValidRange);
 
         // When
         luftdatenService.refreshDataIfRequired();

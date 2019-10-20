@@ -1,9 +1,9 @@
 package pl.itrack.airqeye.store.dataclient.luftdaten.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import pl.itrack.airqeye.store.dataclient.luftdaten.LuftdatenClient;
-import pl.itrack.airqeye.store.dataclient.luftdaten.config.DataFeedSettings;
 import pl.itrack.airqeye.store.dataclient.luftdaten.mapper.MeasurementMapper;
 import pl.itrack.airqeye.store.dataclient.luftdaten.model.LuftdatenMeasurement;
 import pl.itrack.airqeye.store.measurement.entity.Measurement;
@@ -12,6 +12,7 @@ import pl.itrack.airqeye.store.measurement.service.HasUpdatableDataFeed;
 import pl.itrack.airqeye.store.measurement.service.MeasurementService;
 
 import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.List;
 
 @Service
@@ -25,6 +26,9 @@ public class LuftdatenService implements HasUpdatableDataFeed {
 
     @Autowired
     private MeasurementService measurementService;
+
+    @Value("${airq-eye.update-frequency-in-minutes}")
+    private Integer updateFrequencyInMinutes;
 
     // TODO: Data should be separately retrieved and persisted by some background job.
     @Override
@@ -40,7 +44,8 @@ public class LuftdatenService implements HasUpdatableDataFeed {
 
     private boolean isUpdateRequired() {
         LocalDateTime lastUpdate = measurementService.getLatestUpdate(Supplier.LUFTDATEN);
-        return LocalDateTime.now().isAfter(lastUpdate.plusMinutes(DataFeedSettings.DATA_UPDATE_FREQUENCY_IN_MINUTES));
+        return LocalDateTime.now(ZoneOffset.UTC)
+                .isAfter(lastUpdate.plusMinutes(updateFrequencyInMinutes));
     }
 
     /**

@@ -1,0 +1,21 @@
+server:
+    port: 9000
+management:
+    server:
+        address: 127.0.0.1
+        port: 9001
+feign:
+    client:
+        config:
+            default:
+                connectTimeout: 5000
+                readTimeout: 5000
+                loggerLevel: basic
+
+supplier-luftdaten:
+    url: api.luftdaten.info
+
+spring:
+    jackson:
+        # supported options: https://docs.spring.io/spring-boot/docs/current/reference/html/howto.html#howto-customize-the-jackson-objectmapper
+        default-property-inclusion: non_null

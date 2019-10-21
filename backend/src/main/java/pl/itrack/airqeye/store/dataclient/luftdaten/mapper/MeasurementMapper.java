@@ -18,8 +18,8 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import static java.util.Collections.disjoint;
-import static pl.itrack.airqeye.store.dataclient.luftdaten.config.SupportedDataTypes.SUPPORTED_MEASUREMENT_TYPES;
-import static pl.itrack.airqeye.store.dataclient.luftdaten.config.SupportedDataTypes.SUPPORTED_SENSORS;
+import static pl.itrack.airqeye.store.dataclient.luftdaten.config.SupportedDataTypesHelper.SUPPORTED_MEASUREMENT_TYPES;
+import static pl.itrack.airqeye.store.dataclient.luftdaten.config.SupportedDataTypesHelper.SUPPORTED_SENSORS;
 
 @Mapper(config = DefaultMapperConfig.class,
         uses = {MeasurementValueMapper.class, InstallationMapper.class})

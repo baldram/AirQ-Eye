@@ -15,7 +15,7 @@ import java.util.List;
 @RestController
 public class MeasurementsController {
 
-    public static final String URI_MEASUREMENTS = "/measurements";
+    private static final String URI_MEASUREMENTS = "/measurements";
     private static final String URI_SELECTED_MEASUREMENTS = URI_MEASUREMENTS + "/{supplier}/{supplierInstallationId}";
 
     @Autowired
@@ -31,7 +31,7 @@ public class MeasurementsController {
      * @return the latest measurements from all providers
      */
     @GetMapping(URI_MEASUREMENTS)
-    List<Measurement> getMeasurements() {
+    public List<Measurement> getMeasurements() {
         suppliersRegistry.getRegisteredDataClients().forEach(HasUpdatableDataFeed::refreshDataIfRequired);
 
         return measurementService.retrieveMeasurements();
@@ -46,7 +46,7 @@ public class MeasurementsController {
      * @return the latest measurements related to given installation
      */
     @GetMapping(URI_SELECTED_MEASUREMENTS)
-    List<Measurement> getMeasurement(@PathVariable Long supplierInstallationId, @PathVariable Supplier supplier) {
+    public List<Measurement> getMeasurement(@PathVariable Long supplierInstallationId, @PathVariable Supplier supplier) {
         suppliersRegistry.getRegisteredDataClients().forEach(HasUpdatableDataFeed::refreshDataIfRequired);
 
         return measurementService.retrieveMeasurements(supplierInstallationId, supplier);

@@ -14,7 +14,11 @@ public class Location {
 
     private Long id;
 
-    private double latitude, longitude, altitude;
+    private double latitude;
+
+    private double longitude;
+
+    private double altitude;
 
     @NotNull
     private String country;

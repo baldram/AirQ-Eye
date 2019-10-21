@@ -100,7 +100,7 @@ public class MeasurementServiceTest {
         // Given
         final Supplier dataProvider = Supplier.LUFTDATEN;
         final Installation installation = Installation.builder().id(1L).build();
-        when(installationRepository.findByProvider(eq(dataProvider))).thenReturn(Collections.singletonList(installation));
+        when(installationRepository.findByProvider(eq(dataProvider))).thenReturn(singletonList(installation));
 
         // When
         measurementService.removeData(dataProvider);

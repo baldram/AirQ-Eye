@@ -36,7 +36,7 @@ public interface MeasurementMapper {
     }
 
     @Mapping(target = "id", ignore = true)
-    @Mapping(target = "occurredAt", source = "dataFeed.timestamp")
+    @Mapping(target = "occurredAtUtc", source = "dataFeed.timestampUtc")
     @Mapping(target = "installation", source = "dataFeed")
     @Mapping(target = "measurementValues", source = "dataFeed.sensorData")
     Measurement fromDto(LuftdatenMeasurement dataFeed);

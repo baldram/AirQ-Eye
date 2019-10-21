@@ -28,8 +28,8 @@ public class Measurement {
     @GeneratedValue
     private Long id;
 
-    @Column(name = "OCCURRED_AT", nullable = false)
-    private LocalDateTime occurredAt;
+    @Column(name = "OCCURRED_AT_UTC", nullable = false)
+    private LocalDateTime occurredAtUtc;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "fk_installation")
@@ -44,10 +44,10 @@ public class Measurement {
     }
 
     @Builder(toBuilder = true)
-    public Measurement(Long id, LocalDateTime occurredAt, Installation installation,
+    public Measurement(Long id, LocalDateTime occurredAtUtc, Installation installation,
                        List<MeasurementValue> measurementValues) {
         this.id = id;
-        this.occurredAt = occurredAt;
+        this.occurredAtUtc = occurredAtUtc;
         // set association including parent reference
         if (measurementValues != null) {
             this.measurementValues = measurementValues;

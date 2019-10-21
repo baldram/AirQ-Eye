@@ -34,13 +34,13 @@ class MeasurementTest {
         // When
         final Measurement measurement = Measurement.builder()
                 .id(MEASUREMENT_ID)
-                .occurredAt(OCCURRED_AT)
+                .occurredAtUtc(OCCURRED_AT)
                 .measurementValues(asList(measurementValue1, measurementValue2))
                 .installation(installation)
                 .build();
 
         // Then
-        assertThat(measurement.getOccurredAt()).isEqualTo(OCCURRED_AT);
+        assertThat(measurement.getOccurredAtUtc()).isEqualTo(OCCURRED_AT);
         assertThat(measurement.getId()).isEqualTo(MEASUREMENT_ID);
         assertThat(measurement.getInstallation().getSupplier()).isEqualTo(SUPPLIER);
         assertThat(measurement.getInstallation().getMeasurements()).containsOnly(measurement);
@@ -56,10 +56,10 @@ class MeasurementTest {
     @DisplayName("Provide an empty collection if no associated objects")
     void useEmptyCollectionIfNoAssociatedObjects() {
         // Given-When
-        final Measurement measurement = Measurement.builder().occurredAt(OCCURRED_AT).build();
+        final Measurement measurement = Measurement.builder().occurredAtUtc(OCCURRED_AT).build();
 
         // Then
-        assertThat(measurement.getOccurredAt()).isEqualTo(OCCURRED_AT);
+        assertThat(measurement.getOccurredAtUtc()).isEqualTo(OCCURRED_AT);
         assertThat(measurement.getMeasurementValues()).isNotNull();
         assertThat(measurement.getMeasurementValues()).isEmpty();
     }

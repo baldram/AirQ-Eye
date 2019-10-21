@@ -23,7 +23,8 @@ public final class LuftdatenMeasurement {
 
     private final Long id;
 
-    private final String timestamp;
+    @JsonProperty("timestamp")
+    private final String timestampUtc;
 
     @NotNull
     private final Location location;

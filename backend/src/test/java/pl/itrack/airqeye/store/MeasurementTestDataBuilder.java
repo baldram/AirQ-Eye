@@ -25,7 +25,7 @@ public class MeasurementTestDataBuilder {
         final MeasurementValue measurementValue2 = getMeasurementValue(MeasurementType.PM25, 11.55);
 
         return Measurement.builder()
-                .occurredAt(occurredAt)
+                .occurredAtUtc(occurredAt)
                 .measurementValues(asList(measurementValue1, measurementValue2));
     }
 

@@ -32,7 +32,7 @@ class LuftdatenClientTest {
         assertThat(responseEntity).isNotNull();
         assertThat(responseEntity.getBody()).hasSize(1);
         assertThat(responseEntity.getBody().get(0).getId()).isEqualTo(5017919251L);
-        assertThat(responseEntity.getBody().get(0).getTimestamp()).isEqualTo("2019-09-29 07:51:12");
+        assertThat(responseEntity.getBody().get(0).getTimestampUtc()).isEqualTo("2019-09-29 07:51:12");
         assertThat(responseEntity.getBody().get(0).getLocation().getId()).isEqualTo(1160L);
         assertThat(responseEntity.getBody().get(0).getLocation().getLatitude()).isEqualTo(51.154d);
         assertThat(responseEntity.getBody().get(0).getLocation().getLongitude()).isEqualTo(16.94d);

@@ -69,7 +69,7 @@ class MeasurementMapperTest {
         // Then
         assertThat(target).hasSize(1);
         assertThat(target.get(0).getId()).isNull(); // do not override stuff handled by JPA
-        assertThat(target.get(0).getOccurredAt()).isEqualTo(RESPECTIVE_PARSED_MEASUREMENT_DATE);
+        assertThat(target.get(0).getOccurredAtUtc()).isEqualTo(RESPECTIVE_PARSED_MEASUREMENT_DATE);
         verify(measurementValueMapper).fromDtos(anyList());
         verify(installationMapper).fromDto(any());
     }
@@ -81,7 +81,7 @@ class MeasurementMapperTest {
         return LuftdatenMeasurement.builder()
                 .id(123L)
                 .location(location)
-                .timestamp(MEASUREMENT_DATE)
+                .timestampUtc(MEASUREMENT_DATE)
                 .sensor(sensor)
                 .sensorData(Collections.singletonList(SensorData.builder().valueType(valueType).value(123d).build())).build();
     }

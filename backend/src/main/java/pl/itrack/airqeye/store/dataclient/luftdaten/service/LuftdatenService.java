@@ -43,9 +43,9 @@ public class LuftdatenService implements HasUpdatableDataFeed {
     }
 
     private boolean isUpdateRequired() {
-        LocalDateTime lastUpdate = measurementService.getLatestUpdate(Supplier.LUFTDATEN);
+        LocalDateTime lastUpdateUtc = measurementService.getLatestUpdate(Supplier.LUFTDATEN);
         return LocalDateTime.now(ZoneOffset.UTC)
-                .isAfter(lastUpdate.plusMinutes(updateFrequencyInMinutes));
+                .isAfter(lastUpdateUtc.plusMinutes(updateFrequencyInMinutes));
     }
 
     /**

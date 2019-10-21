@@ -62,7 +62,7 @@ class LuftdatenDataSourceRecursiveMappingTest {
         // Then
         assertThat(result).isNotNull();
         assertThat(result.getId()).isNull(); // do not override Entity's id
-        assertThat(result.getOccurredAt()).isEqualTo(RESPECTIVE_PARSED_MEASUREMENT_DATE);
+        assertThat(result.getOccurredAtUtc()).isEqualTo(RESPECTIVE_PARSED_MEASUREMENT_DATE);
         assertThat(result.getInstallation().getId()).isNull();  // do not override Entity's id
         assertThat(result.getInstallation().getLocation().getElevation()).isEqualTo(ALTITUDE);
         assertThat(result.getInstallation().getLocation().getLatitude()).isEqualTo(LATITUDE);
@@ -78,7 +78,7 @@ class LuftdatenDataSourceRecursiveMappingTest {
         assertThat(result.getInstallation().getSensor().getDescription()).isEqualTo(SENSOR_NAME);
         assertThat(result.getInstallation().getMeasurements()).isNotEmpty();
         assertThat(result.getInstallation().getMeasurements()).hasSize(1);
-        assertThat(result.getInstallation().getMeasurements().get(0).getOccurredAt()).isEqualTo(RESPECTIVE_PARSED_MEASUREMENT_DATE);
+        assertThat(result.getInstallation().getMeasurements().get(0).getOccurredAtUtc()).isEqualTo(RESPECTIVE_PARSED_MEASUREMENT_DATE);
         assertThat(result.getMeasurementValues()).hasSize(2);
         assertThat(result.getMeasurementValues().get(0).getId()).isNull(); // do not override Entity's id
         assertThat(result.getMeasurementValues().get(0).getType()).isEqualTo(MeasurementType.PM10);
@@ -105,7 +105,7 @@ class LuftdatenDataSourceRecursiveMappingTest {
     private LuftdatenMeasurement getLuftdatenMeasurement(String country, String measurementDate) {
         return LuftdatenMeasurement.builder()
                 .id(5017918083L)
-                .timestamp(measurementDate)
+                .timestampUtc(measurementDate)
                 .location(Location.builder()
                         .id(LOCATION_ID)
                         .latitude(LATITUDE)

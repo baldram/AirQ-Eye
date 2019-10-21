@@ -1,4 +1,4 @@
-# Air Quality Eye
+# Air Quality Eye [![Codacy Badge](https://api.codacy.com/project/badge/Grade/4444dc7f4e664f8b9ae6e0f3dcab539c)](https://www.codacy.com/manual/baldram/AirQ-Eye?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=baldram/AirQ-Eye&amp;utm_campaign=Badge_Grade)
 Gather and visualize air quality data from external sources on a map for Poland (including recent sensor data from https://luftdaten.info/en/home-en/)
 
 # Requirements

@@ -14,8 +14,8 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import static java.util.stream.Collectors.toList;
-import static pl.itrack.airqeye.store.dataclient.luftdaten.config.SupportedDataTypes.MEASUREMENT_TYPE_PM10;
-import static pl.itrack.airqeye.store.dataclient.luftdaten.config.SupportedDataTypes.MEASUREMENT_TYPE_PM2_5;
+import static pl.itrack.airqeye.store.dataclient.luftdaten.config.SupportedDataTypesHelper.MEASUREMENT_TYPE_PM10;
+import static pl.itrack.airqeye.store.dataclient.luftdaten.config.SupportedDataTypesHelper.MEASUREMENT_TYPE_PM2_5;
 
 @Mapper(config = DefaultMapperConfig.class)
 interface MeasurementValueMapper {

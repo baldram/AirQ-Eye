@@ -54,3 +54,5 @@ www-test/
 
 #old GWT (1.5) created this dir
 .gwt-tmp/
+
+node_modules

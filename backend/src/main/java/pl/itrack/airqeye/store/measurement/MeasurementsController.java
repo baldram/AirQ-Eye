@@ -41,8 +41,7 @@ public class MeasurementsController {
      * Provides the latest measurements related to given supplier's installation
      *
      * @param supplierInstallationId - supplier's installation id
-     * @param supplier - supplier indication
-     *
+     * @param supplier               - supplier indication
      * @return the latest measurements related to given installation
      */
     @GetMapping(URI_SELECTED_MEASUREMENTS)

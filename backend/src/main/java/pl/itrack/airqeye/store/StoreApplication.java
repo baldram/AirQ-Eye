@@ -11,20 +11,20 @@ import java.util.Locale;
 @EnableFeignClients
 public class StoreApplication {
 
-	public static void main(String... args) {
-		configureLocale();
-		runApplication(args);
-	}
+    public static void main(String... args) {
+        configureLocale();
+        runApplication(args);
+    }
 
-	/**
-	 * Configures JVM and Spring to use defined local over OS one.
-	 */
-	private static void configureLocale() {
-		Locale.setDefault(Locale.US);
-		LocaleContextHolder.setDefaultLocale(Locale.US);
-	}
+    /**
+     * Configures JVM and Spring to use defined local over OS one.
+     */
+    private static void configureLocale() {
+        Locale.setDefault(Locale.US);
+        LocaleContextHolder.setDefaultLocale(Locale.US);
+    }
 
-	private static void runApplication(String[] args) {
-		SpringApplication.run(StoreApplication.class, args);
-	}
+    private static void runApplication(String[] args) {
+        SpringApplication.run(StoreApplication.class, args);
+    }
 }

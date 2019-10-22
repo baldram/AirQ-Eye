@@ -12,14 +12,14 @@ import java.util.List;
 
 @Component
 @FeignClient(name = "supplier-luftdaten",
-        decode404 = true,
-        url = "${supplier-luftdaten.url}")
+    decode404 = true,
+    url = "${supplier-luftdaten.url}")
 public interface LuftdatenClient {
 
     @RequestMapping(value = "/static/v2/data.dust.min.json",
-            method = RequestMethod.GET,
-            produces = {
-                    MediaType.APPLICATION_JSON_VALUE
-            })
+        method = RequestMethod.GET,
+        produces = {
+            MediaType.APPLICATION_JSON_VALUE
+        })
     ResponseEntity<List<LuftdatenMeasurement>> retrieveData();
 }

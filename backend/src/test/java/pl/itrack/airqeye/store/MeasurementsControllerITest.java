@@ -55,10 +55,10 @@ public class MeasurementsControllerITest {
     private static final String URI_SELECTED_MEASUREMENTS = "/measurements/%s/%d";
 
     private static final List<String> SUPPORTED_SENSORS =
-            asList("SDS011", "SDS021", "PMS1003", "PMS3003", "PMS5003", "PMS6003", "PMS7003", "HPM", "SPS30");
+        asList("SDS011", "SDS021", "PMS1003", "PMS3003", "PMS5003", "PMS6003", "PMS7003", "HPM", "SPS30");
 
     private static final List<MeasurementType> SUPPORTED_MEASUREMENT_TYPES =
-            asList(MeasurementType.PM10, MeasurementType.PM25);
+        asList(MeasurementType.PM10, MeasurementType.PM25);
 
     private ObjectMapper objectMapper = Jackson2ObjectMapperBuilder.json().build();
 
@@ -112,21 +112,21 @@ public class MeasurementsControllerITest {
 
     private Set<String> getUsedSensorTypes(List<Measurement> data) {
         return data.stream()
-                .map(entry -> entry.getInstallation().getSensor().getDescription())
-                .collect(Collectors.toSet());
+            .map(entry -> entry.getInstallation().getSensor().getDescription())
+            .collect(Collectors.toSet());
     }
 
     private Set<MeasurementType> getUsedMeasurementTypes(List<Measurement> data) {
         return data.stream()
-                .flatMap(entry -> entry.getMeasurementValues().stream())
-                .map(MeasurementValue::getType)
-                .collect(Collectors.toSet());
+            .flatMap(entry -> entry.getMeasurementValues().stream())
+            .map(MeasurementValue::getType)
+            .collect(Collectors.toSet());
     }
 
     private long countMeasurementsWithSupportedTypes(List<Measurement> data) {
         return data.stream()
-                .map(entry -> SUPPORTED_MEASUREMENT_TYPES.containsAll(asValueTypes(entry.getMeasurementValues())))
-                .count();
+            .map(entry -> SUPPORTED_MEASUREMENT_TYPES.containsAll(asValueTypes(entry.getMeasurementValues())))
+            .count();
     }
 
     private List<MeasurementType> asValueTypes(List<MeasurementValue> values) {
@@ -155,11 +155,11 @@ public class MeasurementsControllerITest {
     private void createTestDataWithOneInstallation(Long installationId) {
         repository.deleteAll();
         final Measurement measurement =
-                prebuildMeasurement(LocalDateTime.now().minusYears(5))
-                        .installation(prebuildInstallation(Supplier.LUFTDATEN)
-                                .supplierInstallationId(installationId)
-                                .build())
-                        .build();
+            prebuildMeasurement(LocalDateTime.now().minusYears(5))
+                .installation(prebuildInstallation(Supplier.LUFTDATEN)
+                    .supplierInstallationId(installationId)
+                    .build())
+                .build();
         repository.save(measurement.getInstallation());
         repository.flush();
     }

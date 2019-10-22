@@ -28,10 +28,10 @@ interface MeasurementValueMapper {
     double THRESHOLD_PM25 = 900d;
 
     Predicate<SensorData> WITH_PM10_RESPECTING_THRESHOLD =
-            data -> MEASUREMENT_TYPE_PM10.equals(data.getValueType()) && data.getValue() < THRESHOLD_PM10;
+        data -> MEASUREMENT_TYPE_PM10.equals(data.getValueType()) && data.getValue() < THRESHOLD_PM10;
 
     Predicate<SensorData> WITH_PM25_RESPECTING_THRESHOLD =
-            data -> MEASUREMENT_TYPE_PM2_5.equals(data.getValueType()) && data.getValue() < THRESHOLD_PM25;
+        data -> MEASUREMENT_TYPE_PM2_5.equals(data.getValueType()) && data.getValue() < THRESHOLD_PM25;
 
     /**
      * Convert original Lufdaten measurement value to the AirQ Monitor supported structure.
@@ -77,8 +77,8 @@ interface MeasurementValueMapper {
         }
 
         return sensorData.stream()
-                .filter(WITH_PM10_RESPECTING_THRESHOLD.or(WITH_PM25_RESPECTING_THRESHOLD))
-                .map(this::fromDto)
-                .collect(toList());
+            .filter(WITH_PM10_RESPECTING_THRESHOLD.or(WITH_PM25_RESPECTING_THRESHOLD))
+            .map(this::fromDto)
+            .collect(toList());
     }
 }

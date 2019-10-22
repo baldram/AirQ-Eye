@@ -15,6 +15,7 @@ data: `http://localhost:9000/measurements`
 ## A tech stack
 
 *   Backend: Spring Boot, Lombok, Java 8 (considering JDK 11), Mapstruct,
+
 *   Frontend: it's not yet decided (it's gonna be some popular 
 and lightweight JS framework supported by GWT JsInterop or J2CL 
 for transpiling Java to JavaScript). 
@@ -28,7 +29,7 @@ checkbox is ticked under:
 Preferences → Compiler → Annotation Processors, as it is described 
 [here](https://stackoverflow.com/questions/14866765/building-with-lomboks-slf4j-and-intellij-cannot-find-symbol-log).
 
-## Projects maintenance
+## Project's maintenance
 
 The project contains also bunch of tools helping in maintenance like:
 

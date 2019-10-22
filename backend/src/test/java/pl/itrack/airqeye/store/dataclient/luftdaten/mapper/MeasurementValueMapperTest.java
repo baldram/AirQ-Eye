@@ -23,8 +23,8 @@ public class MeasurementValueMapperTest {
     public void takeDataForTypePm25() {
         // Given
         final SensorData sensorData = SensorData.builder()
-                .valueType(SENSOR_TYPE_PM25)
-                .value(SENSOR_VALUE).build();
+            .valueType(SENSOR_TYPE_PM25)
+            .value(SENSOR_VALUE).build();
 
         // When
         final List<MeasurementValue> convertedValues = mapper.fromDtos(Collections.singletonList(sensorData));
@@ -40,8 +40,8 @@ public class MeasurementValueMapperTest {
     public void takeDataForTypePm10() {
         // Given
         final SensorData sensorData = SensorData.builder()
-                .valueType(SENSOR_TYPE_PM10)
-                .value(SENSOR_VALUE).build();
+            .valueType(SENSOR_TYPE_PM10)
+            .value(SENSOR_VALUE).build();
 
         // When
         final List<MeasurementValue> convertedValues = mapper.fromDtos(Collections.singletonList(sensorData));
@@ -57,8 +57,8 @@ public class MeasurementValueMapperTest {
     public void ignoreDataForAnyOtherType() {
         // Given
         final SensorData sensorData = SensorData.builder()
-                .valueType("temperature")
-                .value(SENSOR_VALUE).build();
+            .valueType("temperature")
+            .value(SENSOR_VALUE).build();
 
         // When
         final List<MeasurementValue> convertedValues = mapper.fromDtos(Collections.singletonList(sensorData));
@@ -72,8 +72,8 @@ public class MeasurementValueMapperTest {
     public void doNotOverrideTechnicalStuff() {
         // Given
         final SensorData sensorData = SensorData.builder()
-                .valueType(SENSOR_TYPE_PM10)
-                .value(SENSOR_VALUE).build();
+            .valueType(SENSOR_TYPE_PM10)
+            .value(SENSOR_VALUE).build();
 
         // When
         final List<MeasurementValue> convertedValues = mapper.fromDtos(Collections.singletonList(sensorData));

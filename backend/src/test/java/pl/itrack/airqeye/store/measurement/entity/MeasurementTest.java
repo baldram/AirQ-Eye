@@ -33,11 +33,11 @@ class MeasurementTest {
 
         // When
         final Measurement measurement = Measurement.builder()
-                .id(MEASUREMENT_ID)
-                .occurredAtUtc(OCCURRED_AT)
-                .measurementValues(asList(measurementValue1, measurementValue2))
-                .installation(installation)
-                .build();
+            .id(MEASUREMENT_ID)
+            .occurredAtUtc(OCCURRED_AT)
+            .measurementValues(asList(measurementValue1, measurementValue2))
+            .installation(installation)
+            .build();
 
         // Then
         assertThat(measurement.getOccurredAtUtc()).isEqualTo(OCCURRED_AT);
@@ -49,7 +49,7 @@ class MeasurementTest {
         assertThat(measurement.getMeasurementValues().get(0).getMeasurement().getId()).isEqualTo(MEASUREMENT_ID);
         assertThat(measurement.getMeasurementValues().get(1).getMeasurement().getId()).isEqualTo(MEASUREMENT_ID);
         assertThat(measurement.getMeasurementValues().stream().map(MeasurementValue::getValue))
-                .containsExactlyInAnyOrder(VALUE_1, VALUE_2);
+            .containsExactlyInAnyOrder(VALUE_1, VALUE_2);
     }
 
     @Test

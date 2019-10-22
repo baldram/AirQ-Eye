@@ -13,7 +13,6 @@ import pl.itrack.airqeye.store.measurement.enumeration.Supplier;
 import pl.itrack.airqeye.store.measurement.repository.InstallationRepository;
 
 import java.time.LocalDateTime;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -74,7 +73,7 @@ public class MeasurementServiceTest {
         // Given
         final List<Measurement> measurements = singletonList(Measurement.builder().id(1L).build());
         final Optional<Installation> installation = Optional.of(Installation.builder()
-                .supplierInstallationId(INSTALLATION_ID).measurements(measurements).build());
+            .supplierInstallationId(INSTALLATION_ID).measurements(measurements).build());
         when(installationRepository.findByProvider(eq(Supplier.LUFTDATEN), eq(INSTALLATION_ID))).thenReturn(installation);
 
         // When
@@ -88,11 +87,11 @@ public class MeasurementServiceTest {
     public void throwErrorIfSpecifiedInstallationNotFound() {
         // When
         final Throwable expectedError = catchThrowable(() ->
-                measurementService.retrieveMeasurements(NOT_EXISTING_INSTALLATION_ID, Supplier.LUFTDATEN));
+            measurementService.retrieveMeasurements(NOT_EXISTING_INSTALLATION_ID, Supplier.LUFTDATEN));
 
         // Then
         assertThat(expectedError).isInstanceOf(InstallationNotFoundException.class)
-                .hasMessageContaining(String.format(NOT_EXISTING_INSTALLATION_MESSAGE, NOT_EXISTING_INSTALLATION_ID));
+            .hasMessageContaining(String.format(NOT_EXISTING_INSTALLATION_MESSAGE, NOT_EXISTING_INSTALLATION_ID));
     }
 
     @Test
@@ -116,7 +115,7 @@ public class MeasurementServiceTest {
         final Installation unpersistedInstallation = buildInstallationWithMeasurementOfId(null);
         final Installation persistedInstallation = buildInstallationWithMeasurementOfId(1L);
         when(installationRepository.saveAll(eq(singletonList(unpersistedInstallation))))
-                .thenReturn(singletonList(persistedInstallation));
+            .thenReturn(singletonList(persistedInstallation));
 
         // When
         final List<Installation> result = measurementService.persist(unpersistedInstallation.getMeasurements());

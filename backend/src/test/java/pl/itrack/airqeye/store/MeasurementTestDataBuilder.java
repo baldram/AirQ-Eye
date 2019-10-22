@@ -25,15 +25,15 @@ public class MeasurementTestDataBuilder {
         final MeasurementValue measurementValue2 = getMeasurementValue(MeasurementType.PM25, 11.55);
 
         return Measurement.builder()
-                .occurredAtUtc(occurredAt)
-                .measurementValues(asList(measurementValue1, measurementValue2));
+            .occurredAtUtc(occurredAt)
+            .measurementValues(asList(measurementValue1, measurementValue2));
     }
 
     private static MeasurementValue getMeasurementValue(MeasurementType type, double value) {
         return MeasurementValue.builder()
-                .type(type)
-                .value(value)
-                .build();
+            .type(type)
+            .value(value)
+            .build();
     }
 
     public static Installation.InstallationBuilder prebuildInstallation(Supplier supplier) {
@@ -42,22 +42,22 @@ public class MeasurementTestDataBuilder {
 
     public static Installation.InstallationBuilder prebuildInstallation(Supplier supplier, Long supplierInstallationId) {
         Address address = Address.builder()
-                .country(Country.PL)
-                .province(Province.POMORSKIE)
-                .additionalAddressDetails("ul. Testowa 4B, Gdańsk") // np. Airly podaje
-                .build();
+            .country(Country.PL)
+            .province(Province.POMORSKIE)
+            .additionalAddressDetails("ul. Testowa 4B, Gdańsk") // np. Airly podaje
+            .build();
 
         Sensor sensor = Sensor.builder()
-                .supplierSensorId(323L)
-                .manufacturer("Nova Fitness")
-                .description("SDS011") // name
-                .build();
+            .supplierSensorId(323L)
+            .manufacturer("Nova Fitness")
+            .description("SDS011") // name
+            .build();
 
         return Installation.builder()
-                .location(Location.builder().latitude(51.094).longitude(17.002).elevation(124).build())
-                .address(address)
-                .supplier(supplier)
-                .supplierInstallationId(supplierInstallationId)
-                .sensor(sensor);
+            .location(Location.builder().latitude(51.094).longitude(17.002).elevation(124).build())
+            .address(address)
+            .supplier(supplier)
+            .supplierInstallationId(supplierInstallationId)
+            .sensor(sensor);
     }
 }

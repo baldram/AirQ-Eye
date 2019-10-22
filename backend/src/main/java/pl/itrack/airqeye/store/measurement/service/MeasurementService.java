@@ -23,15 +23,15 @@ public class MeasurementService {
     @Transactional(readOnly = true)
     public List<Measurement> retrieveMeasurements() {
         return installationRepository.findAll().stream()
-                .map(Installation::getMeasurements)
-                .flatMap(Collection::stream)
-                .collect(Collectors.toList());
+            .map(Installation::getMeasurements)
+            .flatMap(Collection::stream)
+            .collect(Collectors.toList());
     }
 
     @Transactional(readOnly = true)
     public List<Measurement> retrieveMeasurements(final Long installationId, Supplier supplier) {
         Installation installation = installationRepository.findByProvider(supplier, installationId)
-                .orElseThrow(() -> new InstallationNotFoundException(installationId));
+            .orElseThrow(() -> new InstallationNotFoundException(installationId));
 
         return installation.getMeasurements();
     }
@@ -46,8 +46,8 @@ public class MeasurementService {
 
     private List<Installation> getInstallations(List<Measurement> measurements) {
         return measurements.stream()
-                .map(Measurement::getInstallation)
-                .collect(Collectors.toList());
+            .map(Measurement::getInstallation)
+            .collect(Collectors.toList());
     }
 
     @Transactional
@@ -55,7 +55,7 @@ public class MeasurementService {
         // FIXME: modify to delete by IDs in batch in partitions
         //  or try to implement delete with where clause by enum
         installationRepository.findByProvider(dataProvider)
-                .forEach(installation -> installationRepository.deleteById(installation.getId()));
+            .forEach(installation -> installationRepository.deleteById(installation.getId()));
     }
 
     public LocalDateTime getLatestUpdate(Supplier dataProvider) {

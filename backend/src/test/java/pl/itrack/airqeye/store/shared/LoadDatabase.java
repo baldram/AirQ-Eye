@@ -23,9 +23,9 @@ public class LoadDatabase {
         // as while the measurement constructing, JPA reference is set. We used to add new measurements
         // to the existing installation and then all references (related to bidirectional association) are updated.
         final Measurement measurement =
-                prebuildMeasurement(LocalDateTime.now().minusYears(5))
-                        .installation(prebuildInstallation(Supplier.LUFTDATEN).build())
-                        .build();
+            prebuildMeasurement(LocalDateTime.now().minusYears(5))
+                .installation(prebuildInstallation(Supplier.LUFTDATEN).build())
+                .build();
         return args -> log.info("Preloading " + installationRepository.save(measurement.getInstallation()));
     }
 }

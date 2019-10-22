@@ -38,17 +38,17 @@ public class Installation {
 
     @Embedded
     @AttributeOverrides({
-            @AttributeOverride(name = "latitude", column = @Column(name = "LATITUDE")),
-            @AttributeOverride(name = "longitude", column = @Column(name = "LONGITUDE")),
-            @AttributeOverride(name = "elevation", column = @Column(name = "ELEVATION"))
+        @AttributeOverride(name = "latitude", column = @Column(name = "LATITUDE")),
+        @AttributeOverride(name = "longitude", column = @Column(name = "LONGITUDE")),
+        @AttributeOverride(name = "elevation", column = @Column(name = "ELEVATION"))
     })
     private Location location;
 
     @Embedded
     @AttributeOverrides({
-            @AttributeOverride(name = "country", column = @Column(name = "COUNTRY")),
-            @AttributeOverride(name = "province", column = @Column(name = "PROVINCE")),
-            @AttributeOverride(name = "additionalAddressDetails", column = @Column(name = "ADDITIONAL_ADDRESS_DETAILS"))
+        @AttributeOverride(name = "country", column = @Column(name = "COUNTRY")),
+        @AttributeOverride(name = "province", column = @Column(name = "PROVINCE")),
+        @AttributeOverride(name = "additionalAddressDetails", column = @Column(name = "ADDITIONAL_ADDRESS_DETAILS"))
     })
     private Address address;
 

@@ -22,7 +22,7 @@ import static pl.itrack.airqeye.store.dataclient.luftdaten.config.SupportedDataT
 import static pl.itrack.airqeye.store.dataclient.luftdaten.config.SupportedDataTypesHelper.SUPPORTED_SENSORS;
 
 @Mapper(config = DefaultMapperConfig.class,
-        uses = {MeasurementValueMapper.class, InstallationMapper.class})
+    uses = {MeasurementValueMapper.class, InstallationMapper.class})
 public interface MeasurementMapper {
 
     String DATE_FORMAT = "yyyy-MM-dd HH:mm:ss";
@@ -52,16 +52,16 @@ public interface MeasurementMapper {
         List<LuftdatenMeasurement> validData = getValidData(data);
 
         return validData
-                .stream()
-                .map(this::fromDto)
-                .collect(Collectors.toCollection(() -> new ArrayList<>(validData.size())));
+            .stream()
+            .map(this::fromDto)
+            .collect(Collectors.toCollection(() -> new ArrayList<>(validData.size())));
     }
 
     default List<LuftdatenMeasurement> getValidData(List<LuftdatenMeasurement> data) {
         return data.stream()
-                .filter(WITH_SUPPORTED_COUNTRIES
-                        .and(WITH_SUPPORTED_SENSORS)
-                        .and(WITH_SUPPORTED_VALUE_TYPES))
-                .collect(Collectors.toList());
+            .filter(WITH_SUPPORTED_COUNTRIES
+                .and(WITH_SUPPORTED_SENSORS)
+                .and(WITH_SUPPORTED_VALUE_TYPES))
+            .collect(Collectors.toList());
     }
 }

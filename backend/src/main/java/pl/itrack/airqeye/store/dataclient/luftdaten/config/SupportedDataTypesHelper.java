@@ -11,7 +11,7 @@ public class SupportedDataTypesHelper {
      * https://github.com/opendata-stuttgart/feinstaub-map-v2/blob/master/src/js/feinstaub-api.js
      */
     public static final List<String> SUPPORTED_SENSORS =
-            asList("SDS011", "SDS021", "PMS1003", "PMS3003", "PMS5003", "PMS6003", "PMS7003", "HPM", "SPS30");
+        asList("SDS011", "SDS021", "PMS1003", "PMS3003", "PMS5003", "PMS6003", "PMS7003", "HPM", "SPS30");
 
     /**
      * Type names as provided by Luftdaten: https://maps.luftdaten.info/data/v2/data.dust.min.json data source.

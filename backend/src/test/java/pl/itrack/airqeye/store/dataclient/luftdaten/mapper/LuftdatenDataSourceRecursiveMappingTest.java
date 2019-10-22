@@ -24,7 +24,7 @@ class LuftdatenDataSourceRecursiveMappingTest {
 
     private static final String MEASUREMENT_DATE = "2019-09-29 07:51:04";
     private static final LocalDateTime RESPECTIVE_PARSED_MEASUREMENT_DATE
-            = LocalDateTime.of(2019, 9, 29, 7, 51, 4);
+        = LocalDateTime.of(2019, 9, 29, 7, 51, 4);
     private static final double ALTITUDE = 124d;
     private static final Country COUNTRY = Country.PL;
     private static final double LATITUDE = 51.094d;
@@ -104,31 +104,31 @@ class LuftdatenDataSourceRecursiveMappingTest {
 
     private LuftdatenMeasurement getLuftdatenMeasurement(String country, String measurementDate) {
         return LuftdatenMeasurement.builder()
-                .id(5017918083L)
-                .timestampUtc(measurementDate)
-                .location(Location.builder()
-                        .id(LOCATION_ID)
-                        .latitude(LATITUDE)
-                        .longitude(LONGITUDE)
-                        .altitude(ALTITUDE)
-                        .country(country)
-                        .build())
-                .sensor(Sensor.builder()
-                        .id(SENSOR_ID)
-                        .type(SensorType.of(1L, SENSOR_MANUFACTURER, SENSOR_NAME))
-                        .build())
-                .sensorData(asList(
-                        SensorData.of(10652023377L, SENSOR_VALUE_1, SENSOR_TYPE_1),
-                        SensorData.of(10652023398L, SENSOR_VALUE_2, SENSOR_TYPE_2)))
-                .build();
+            .id(5017918083L)
+            .timestampUtc(measurementDate)
+            .location(Location.builder()
+                .id(LOCATION_ID)
+                .latitude(LATITUDE)
+                .longitude(LONGITUDE)
+                .altitude(ALTITUDE)
+                .country(country)
+                .build())
+            .sensor(Sensor.builder()
+                .id(SENSOR_ID)
+                .type(SensorType.of(1L, SENSOR_MANUFACTURER, SENSOR_NAME))
+                .build())
+            .sensorData(asList(
+                SensorData.of(10652023377L, SENSOR_VALUE_1, SENSOR_TYPE_1),
+                SensorData.of(10652023398L, SENSOR_VALUE_2, SENSOR_TYPE_2)))
+            .build();
     }
 
     @Test
     void handleMultipleEntries() {
         // Given
         final List<LuftdatenMeasurement> luftdatenFeed = asList(
-                getSampleLuftdatenResponse(Country.PL.toString()),
-                getSampleLuftdatenResponse(Country.DE.toString()));
+            getSampleLuftdatenResponse(Country.PL.toString()),
+            getSampleLuftdatenResponse(Country.DE.toString()));
 
         // When
         final List<Measurement> result = measurementMapper.fromDtos(luftdatenFeed);
@@ -144,8 +144,8 @@ class LuftdatenDataSourceRecursiveMappingTest {
     void ignoreUnsupportedCountry() {
         // Given
         final List<LuftdatenMeasurement> luftdatenFeed = asList(
-                getSampleLuftdatenResponse("XX"),
-                getSampleLuftdatenResponse(Country.PL.toString()));
+            getSampleLuftdatenResponse("XX"),
+            getSampleLuftdatenResponse(Country.PL.toString()));
 
         // When
         final List<Measurement> result = measurementMapper.fromDtos(luftdatenFeed);

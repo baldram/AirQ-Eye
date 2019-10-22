@@ -9,7 +9,8 @@ import pl.itrack.airqeye.store.measurement.entity.Address;
 @Mapper(config = DefaultMapperConfig.class)
 interface AddressMapper {
 
-    @Mapping(target = "province", ignore = true) // not provided by Luftdaten
-    @Mapping(target = "additionalAddressDetails", ignore = true)  // not provided by Luftdaten
+    // the ignored ones are not provided by Luftdaten
+    @Mapping(target = "province", ignore = true)
+    @Mapping(target = "additionalAddressDetails", ignore = true)
     Address fromDto(Location location);
 }

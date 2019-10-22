@@ -9,14 +9,14 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import pl.itrack.airqeye.store.measurement.service.InstallationNotFoundException;
 
 @RestControllerAdvice
-class InstallationNotFoundAdvice {
+public class InstallationNotFoundAdvice {
 
     @ExceptionHandler(InstallationNotFoundException.class)
-    ResponseEntity<ErrorMessage> installationNotFoundHandler(InstallationNotFoundException exception) {
+    public ResponseEntity<ErrorMessage> installationNotFoundHandler(InstallationNotFoundException exception) {
         return ResponseEntity
-                .status(HttpStatus.NOT_FOUND)
-                .contentType(MediaType.APPLICATION_JSON)
-                .body(new ErrorMessage(exception.getMessage()));
+            .status(HttpStatus.NOT_FOUND)
+            .contentType(MediaType.APPLICATION_JSON)
+            .body(new ErrorMessage(exception.getMessage()));
     }
 
     @Value

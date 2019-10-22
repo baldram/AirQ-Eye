@@ -7,7 +7,7 @@ import pl.itrack.airqeye.store.measurement.entity.Installation;
 import pl.itrack.airqeye.store.measurement.mapper.DefaultMapperConfig;
 
 @Mapper(config = DefaultMapperConfig.class,
-        uses = {LocationMapper.class, AddressMapper.class, SensorMapper.class})
+    uses = {LocationMapper.class, AddressMapper.class, SensorMapper.class})
 interface InstallationMapper {
 
     @Mapping(target = "id", ignore = true)

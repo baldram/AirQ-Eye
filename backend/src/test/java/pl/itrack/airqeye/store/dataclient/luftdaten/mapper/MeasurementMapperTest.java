@@ -38,7 +38,7 @@ class MeasurementMapperTest {
     private static final String SUPPORTED_VALUE_TYPE = "P1";
     private static final String MEASUREMENT_DATE = "2019-09-29 07:51:04";
     private static final LocalDateTime RESPECTIVE_PARSED_MEASUREMENT_DATE
-            = LocalDateTime.of(2019, 9, 29, 7, 51, 4);
+        = LocalDateTime.of(2019, 9, 29, 7, 51, 4);
 
     private InstallationMapper installationMapper;
 
@@ -61,7 +61,7 @@ class MeasurementMapperTest {
     void handleSupportedData() {
         // Given
         List<LuftdatenMeasurement> source = Collections.singletonList(
-                getLuftdatenDataSample(Country.PL.toString(), SUPPORTED_SENSOR_TYPE, SUPPORTED_VALUE_TYPE));
+            getLuftdatenDataSample(Country.PL.toString(), SUPPORTED_SENSOR_TYPE, SUPPORTED_VALUE_TYPE));
 
         // When
         final List<Measurement> target = measurementMapper.fromDtos(source);
@@ -79,11 +79,11 @@ class MeasurementMapperTest {
         Sensor sensor = Sensor.builder().type(SensorType.builder().name(sensorType).build()).build();
 
         return LuftdatenMeasurement.builder()
-                .id(123L)
-                .location(location)
-                .timestampUtc(MEASUREMENT_DATE)
-                .sensor(sensor)
-                .sensorData(Collections.singletonList(SensorData.builder().valueType(valueType).value(123d).build())).build();
+            .id(123L)
+            .location(location)
+            .timestampUtc(MEASUREMENT_DATE)
+            .sensor(sensor)
+            .sensorData(Collections.singletonList(SensorData.builder().valueType(valueType).value(123d).build())).build();
     }
 
     @Test
@@ -91,9 +91,9 @@ class MeasurementMapperTest {
     void ignoreUnsupportedCountry() {
         // Given
         List<LuftdatenMeasurement> source = Arrays.asList(
-                getLuftdatenDataSample(Country.NL.toString(), SUPPORTED_SENSOR_TYPE, SUPPORTED_VALUE_TYPE),
-                getLuftdatenDataSample("XX", SUPPORTED_SENSOR_TYPE, SUPPORTED_VALUE_TYPE),
-                getLuftdatenDataSample(Country.PL.toString(), SUPPORTED_SENSOR_TYPE, SUPPORTED_VALUE_TYPE));
+            getLuftdatenDataSample(Country.NL.toString(), SUPPORTED_SENSOR_TYPE, SUPPORTED_VALUE_TYPE),
+            getLuftdatenDataSample("XX", SUPPORTED_SENSOR_TYPE, SUPPORTED_VALUE_TYPE),
+            getLuftdatenDataSample(Country.PL.toString(), SUPPORTED_SENSOR_TYPE, SUPPORTED_VALUE_TYPE));
 
         // When
         final List<Measurement> target = measurementMapper.fromDtos(source);
@@ -108,9 +108,9 @@ class MeasurementMapperTest {
     void ignoreUnsupportedSensorType() {
         // Given
         List<LuftdatenMeasurement> source = Arrays.asList(
-                getLuftdatenDataSample(Country.CN.toString(), "some-unsupported", SUPPORTED_VALUE_TYPE),
-                getLuftdatenDataSample(Country.PL.toString(), SUPPORTED_SENSOR_TYPE, SUPPORTED_VALUE_TYPE),
-                getLuftdatenDataSample(Country.SE.toString(), SUPPORTED_SENSOR_TYPE, SUPPORTED_VALUE_TYPE));
+            getLuftdatenDataSample(Country.CN.toString(), "some-unsupported", SUPPORTED_VALUE_TYPE),
+            getLuftdatenDataSample(Country.PL.toString(), SUPPORTED_SENSOR_TYPE, SUPPORTED_VALUE_TYPE),
+            getLuftdatenDataSample(Country.SE.toString(), SUPPORTED_SENSOR_TYPE, SUPPORTED_VALUE_TYPE));
 
         // When
         final List<Measurement> target = measurementMapper.fromDtos(source);
@@ -129,9 +129,9 @@ class MeasurementMapperTest {
     void ignoreMeasurementSourceIfNoSupportedDataReads() {
         // Given
         List<LuftdatenMeasurement> source = Arrays.asList(
-                getLuftdatenDataSample(Country.CN.toString(), SUPPORTED_SENSOR_TYPE, "humidity"),
-                getLuftdatenDataSample(Country.PL.toString(), SUPPORTED_SENSOR_TYPE, SUPPORTED_VALUE_TYPE),
-                getLuftdatenDataSample(Country.SE.toString(), SUPPORTED_SENSOR_TYPE, SUPPORTED_VALUE_TYPE));
+            getLuftdatenDataSample(Country.CN.toString(), SUPPORTED_SENSOR_TYPE, "humidity"),
+            getLuftdatenDataSample(Country.PL.toString(), SUPPORTED_SENSOR_TYPE, SUPPORTED_VALUE_TYPE),
+            getLuftdatenDataSample(Country.SE.toString(), SUPPORTED_SENSOR_TYPE, SUPPORTED_VALUE_TYPE));
 
         // When
         final List<Measurement> target = measurementMapper.fromDtos(source);

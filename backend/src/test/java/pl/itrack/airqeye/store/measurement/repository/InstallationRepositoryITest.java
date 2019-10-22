@@ -28,13 +28,13 @@ public class InstallationRepositoryITest {
     private static final long SUPPLIER_INSTALLATION_ID_3 = 3L;
 
     private static final LocalDateTime DATE_1
-            = LocalDateTime.of(9999, 9, 11, 2, 3, 5);
+        = LocalDateTime.of(9999, 9, 11, 2, 3, 5);
     private static final LocalDateTime DATE_2
-            = LocalDateTime.of(9999, 9, 13, 7, 11, 13);
+        = LocalDateTime.of(9999, 9, 13, 7, 11, 13);
     private static final LocalDateTime DATE_3
-            = LocalDateTime.of(9999, 9, 17, 17, 19, 23);
+        = LocalDateTime.of(9999, 9, 17, 17, 19, 23);
     private static final LocalDateTime DATE_4
-            = LocalDateTime.of(9999, 9, 19, 2, 3, 5);
+        = LocalDateTime.of(9999, 9, 19, 2, 3, 5);
 
     @Autowired
     private InstallationRepository repository;
@@ -89,7 +89,7 @@ public class InstallationRepositoryITest {
         assertThat(result).isNotEmpty();
         assertThat(result).isPresent();
         assertThat(result).hasValueSatisfying(value ->
-                assertThat(value.getSupplierInstallationId()).isEqualTo(SUPPLIER_INSTALLATION_ID_2));
+            assertThat(value.getSupplierInstallationId()).isEqualTo(SUPPLIER_INSTALLATION_ID_2));
     }
 
     @Test

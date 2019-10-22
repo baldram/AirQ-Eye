@@ -12,15 +12,11 @@ Further open the following URL in your browser to see JSON data: `http://localho
 
 ## A tech stack
 
-* Backend: Spring Boot, Lombok, Java 8 (considering JDK 11), Mapstruct,
-* Frontend: it's not yet decided (it's gonna be some popular and lightweight JS framework supported by GWT JsInterop or J2CL for transpiling Java to JavaScript). 
+  * Backend: Spring Boot, Lombok, Java 8 (considering JDK 11), Mapstruct,
+  * Frontend: it's not yet decided (it's gonna be some popular and lightweight JS framework supported by GWT JsInterop or J2CL for transpiling Java to JavaScript). 
 
 ## Requirements
 
 In order to use IntelliJ IDEA, please install the [Lombok plugin](https://github.com/mplushnikov/lombok-intellij-plugin).
 After this you have to ensure that "Enable annotation processing" checkbox is ticked under:
 Preferences → Compiler → Annotation Processors, as it is described [here](https://stackoverflow.com/questions/14866765/building-with-lomboks-slf4j-and-intellij-cannot-find-symbol-log).
-
-
-
-

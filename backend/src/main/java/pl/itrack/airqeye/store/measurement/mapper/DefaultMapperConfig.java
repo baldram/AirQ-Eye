@@ -13,4 +13,5 @@ import org.mapstruct.ReportingPolicy;
     nullValueMappingStrategy = NullValueMappingStrategy.RETURN_NULL
 )
 public class DefaultMapperConfig {
+
 }

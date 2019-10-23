@@ -1,15 +1,14 @@
 package pl.itrack.airqeye.store.measurement.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Builder
@@ -18,16 +17,16 @@ import javax.persistence.Id;
 @Entity
 public class Sensor {
 
-    @JsonIgnore
-    @Id
-    @GeneratedValue
-    private Long id;
+  @JsonIgnore
+  @Id
+  @GeneratedValue
+  private Long id;
 
-    @Column(name = "SUPPLIER_SENSOR_ID")
-    private Long supplierSensorId;
+  @Column(name = "SUPPLIER_SENSOR_ID")
+  private Long supplierSensorId;
 
-    private String manufacturer;
+  private String manufacturer;
 
-    private String description;
+  private String description;
 
 }

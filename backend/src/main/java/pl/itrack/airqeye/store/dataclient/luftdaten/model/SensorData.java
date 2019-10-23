@@ -13,14 +13,15 @@ import lombok.Value;
 @JsonDeserialize(builder = SensorData.SensorDataBuilder.class)
 public class SensorData {
 
-    private Long id;
+  private Long id;
 
-    private double value;
+  private double value;
 
-    @JsonProperty("value_type")
-    private String valueType;
+  @JsonProperty("value_type")
+  private String valueType;
 
-    @JsonPOJOBuilder(withPrefix = "")
-    public static final class SensorDataBuilder {
-    }
+  @JsonPOJOBuilder(withPrefix = "")
+  public static final class SensorDataBuilder {
+
+  }
 }

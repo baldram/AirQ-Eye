@@ -1,9 +1,9 @@
 spring:
-#  datasource:
-#    url: jdbc:h2:mem:airqdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;DATABASE_TO_UPPER=true
-#    username: root
-#    password: airq
-#    continue-on-error: false
+  #  datasource:
+  #    url: jdbc:h2:mem:airqdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;DATABASE_TO_UPPER=true
+  #    username: root
+  #    password: airq
+  #    continue-on-error: false
   h2:
     console:
       enabled: true

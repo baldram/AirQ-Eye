@@ -1,14 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pl.itrack.airqeye.store.measurement.enumeration;
 
 /**
  * Units: °C, µg/m3
  */
 public enum MeasurementUnit {
-    CELSIUS,
-    MICROGRAMS_PER_CUBIC_METER
+  CELSIUS,
+  MICROGRAMS_PER_CUBIC_METER
 }

@@ -29,12 +29,23 @@ checkbox is ticked under:
 Preferences → Compiler → Annotation Processors, as it is described 
 [here](https://stackoverflow.com/questions/14866765/building-with-lomboks-slf4j-and-intellij-cannot-find-symbol-log).
 
-## Project's maintenance
+## Contribution
 
-The project contains also bunch of tools helping in maintenance like:
+### Coding Conventions
 
-*   [remark-lint](https://github.com/remarkjs/remark-lint#using-remark-to-fix-your-markdown) 
+The project adheres to the [Google Style Guide](https://google.github.io/styleguide/). 
+The rules are intended to improve the readability of code and make it consistent.
+
+*   [Google Java Style Guide](https://google.github.io/styleguide/javaguide.html) ([Eclipse Code Style Scheme](https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml) | 
+    [IntelliJ Code Style Scheme](https://raw.githubusercontent.com/google/styleguide/gh-pages/intellij-java-google-style.xml)),
+*   [Checkstyle Rules configuration file](utils/checkstyle.xml) that checks the Google coding conventions,
+*   Additionally Findbugs and PDM rules to be found in [utils](/utils) folder,
+*   [Google HTML/CSS Style Guide](https://google.github.io/styleguide/htmlcssguide.xml),
+*   [Google JavaScript Style Guide](https://google.github.io/styleguide/javascriptguide.xml).
+
+### Markdown Style Guide
+*   please find the [remark-lint](https://github.com/remarkjs/remark-lint#using-remark-to-fix-your-markdown) 
 (for Markdown syntax validation - ensuring that the project's documentation 
 will be correctly rendered in all the different markdown parsers).<br />
-Execute `npm install` and further `npm run lint-md`. <br />
+Execute `npm install` and further `npm run lint-md` to validate project's documentation.<br />
 Integration with IntelliJ is also [possible](https://www.jetbrains.com/help/idea/eslint.html) .

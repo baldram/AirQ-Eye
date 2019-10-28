@@ -55,7 +55,7 @@ class MeasurementMapperTest {
 
   /**
    * For full recursive data conversion test without mocks please use
-   * LuftdatenDataSourceRecursiveMappingTest
+   * LuftdatenDataSourceRecursiveMappingTest.
    */
   @Test
   @DisplayName("Take data if supported country and sensor type")

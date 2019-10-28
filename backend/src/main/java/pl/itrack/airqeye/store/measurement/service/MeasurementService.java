@@ -19,6 +19,11 @@ public class MeasurementService {
   @Autowired
   private InstallationRepository installationRepository;
 
+  /**
+   * Retrieves measurements from all providers.
+   *
+   * @return a list of all measurements
+   */
   @Transactional(readOnly = true)
   public List<Measurement> retrieveMeasurements() {
     return installationRepository.findAll().stream()
@@ -27,6 +32,13 @@ public class MeasurementService {
         .collect(Collectors.toList());
   }
 
+  /**
+   * Provides the latest measurements related to given supplier's installation.
+   *
+   * @param installationId - related installation
+   * @param supplier - related data provider
+   * @return measurements
+   */
   @Transactional(readOnly = true)
   public List<Measurement> retrieveMeasurements(final Long installationId, Supplier supplier) {
     Installation installation = installationRepository.findByProvider(supplier, installationId)
@@ -35,6 +47,12 @@ public class MeasurementService {
     return installation.getMeasurements();
   }
 
+  /**
+   * Persists measurements data.
+   *
+   * @param measurements - measurements data to be persisted
+   * @return - installations including persisted measurements
+   */
   @Transactional
   public List<Installation> persist(List<Measurement> measurements) {
     final List<Installation> installations = getInstallations(measurements);
@@ -49,6 +67,11 @@ public class MeasurementService {
         .collect(Collectors.toList());
   }
 
+  /**
+   * Removes all data for given supplier.
+   *
+   * @param dataProvider - the supplier
+   */
   @Transactional
   public void removeData(Supplier dataProvider) {
     // FIXME: modify to delete by IDs in batch in partitions
@@ -57,6 +80,12 @@ public class MeasurementService {
         .forEach(installation -> installationRepository.deleteById(installation.getId()));
   }
 
+  /**
+   * Finds the latest measurement date for given supplier.
+   *
+   * @param dataProvider - the supplier
+   * @return date time of the last measurement
+   */
   public LocalDateTime getLatestUpdate(Supplier dataProvider) {
     final Optional<LocalDateTime> latestUpdate = installationRepository
         .getLatestUpdate(dataProvider);

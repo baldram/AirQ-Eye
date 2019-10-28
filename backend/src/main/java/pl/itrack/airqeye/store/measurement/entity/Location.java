@@ -21,7 +21,7 @@ public class Location {
   private double longitude;
 
   /**
-   * altitude at which device is installed MASL (meters above sea level)
+   * altitude at which device is installed MASL (meters above sea level).
    */
   private double elevation;
 }

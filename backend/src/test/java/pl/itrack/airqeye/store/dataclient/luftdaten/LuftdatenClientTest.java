@@ -24,7 +24,7 @@ class LuftdatenClientTest {
   private ObjectMapper objectMapper = Jackson2ObjectMapperBuilder.json().build();
 
   @Test
-  @DisplayName("Test whether model is consistent with the source JSON and data will be correctly mapped")
+  @DisplayName("Test if model is consistent with the source JSON and data will be correctly mapped")
   void mapJsonToObject() throws IOException {
     final ResponseEntity<List<LuftdatenMeasurement>> responseEntity = new ResponseEntity<>(
         getSampleData(), HttpStatus.OK);

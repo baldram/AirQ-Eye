@@ -16,11 +16,13 @@ public interface InstallationRepository extends JpaRepository<Installation, Long
   @Query("SELECT i FROM Installation i WHERE i.supplier = :supplier")
   List<Installation> findByProvider(@Param("supplier") Supplier supplier);
 
-  @Query("SELECT i FROM Installation i WHERE i.supplier = :supplier and i.supplierInstallationId = :id")
+  @Query("SELECT i FROM Installation i WHERE i.supplier = :supplier"
+      + " AND i.supplierInstallationId = :id")
   Optional<Installation> findByProvider(@Param("supplier") Supplier supplier,
       @Param("id") Long installationId);
 
-  @Query("SELECT MAX(m.occurredAtUtc) FROM Installation i JOIN i.measurements m WHERE i.supplier = :supplier")
+  @Query("SELECT MAX(m.occurredAtUtc) FROM Installation i JOIN i.measurements m"
+      + " WHERE i.supplier = :supplier")
   Optional<LocalDateTime> getLatestUpdate(@Param("supplier") Supplier dataProvider);
 
   // TODO: @Modifying --> deleteByProvider

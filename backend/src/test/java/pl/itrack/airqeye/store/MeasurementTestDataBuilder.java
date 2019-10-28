@@ -18,6 +18,12 @@ public class MeasurementTestDataBuilder {
 
   private static final long SUPPLIER_INSTALLATION_ID = 149L;
 
+  /**
+   * Builds test data set with variable measurement date.
+   *
+   * @param occurredAt - measurement date time
+   * @return prebuilt measurement data
+   */
   public static Measurement.MeasurementBuilder prebuildMeasurement(LocalDateTime occurredAt) {
 
     final MeasurementValue measurementValue1 = getMeasurementValue(MeasurementType.PM10, 16.42);
@@ -39,6 +45,13 @@ public class MeasurementTestDataBuilder {
     return prebuildInstallation(supplier, SUPPLIER_INSTALLATION_ID);
   }
 
+  /**
+   * Builds installation data for given data provider and with variable supplier id.
+   *
+   * @param supplier - given data supplier
+   * @param supplierInstallationId - installation external id from the supplier DB
+   * @return prebuilt installation data
+   */
   public static Installation.InstallationBuilder prebuildInstallation(Supplier supplier,
       Long supplierInstallationId) {
     Address address = Address.builder()

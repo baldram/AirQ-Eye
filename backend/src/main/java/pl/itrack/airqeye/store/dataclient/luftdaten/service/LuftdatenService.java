@@ -48,7 +48,7 @@ public class LuftdatenService implements HasUpdatableDataFeed {
   }
 
   /**
-   * Calls Luftdaten data feed and converts retrieved data to entities ready for persistence
+   * Calls Luftdaten data feed and converts retrieved data to entities ready for persistence.
    *
    * @return list of measurements
    */

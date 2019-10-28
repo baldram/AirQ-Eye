@@ -42,6 +42,14 @@ public class Measurement {
   public Measurement() {
   }
 
+  /**
+   * Constructs the Measurement object and updates references (for bidirectional association).
+   *
+   * @param id - DB id
+   * @param occurredAtUtc - date time of the measurement
+   * @param installation - related installation
+   * @param measurementValues - measured values
+   */
   @Builder(toBuilder = true)
   public Measurement(Long id, LocalDateTime occurredAtUtc, Installation installation,
       List<MeasurementValue> measurementValues) {

@@ -39,7 +39,7 @@ public class MeasurementsController {
   }
 
   /**
-   * Provides the latest measurements related to given supplier's installation
+   * Provides the latest measurements related to given supplier's installation.
    *
    * @param supplierInstallationId - supplier's installation id
    * @param supplier - supplier indication

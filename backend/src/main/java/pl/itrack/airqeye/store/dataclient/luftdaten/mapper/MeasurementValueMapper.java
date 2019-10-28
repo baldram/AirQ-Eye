@@ -47,8 +47,8 @@ interface MeasurementValueMapper {
 
   @Named("measurementType")
   default MeasurementType fromValueTypeString(String valueType) {
-    // The type conversion is simple as for this data source we support only PM10 and PM2.5 dust sensors,
-    // exactly as they originally filter out the dust data.
+    // The type conversion is simple as for this data source we support only PM10 and PM2.5 dust
+    // sensors, exactly as they originally filter out the dust data.
     if (MEASUREMENT_TYPE_PM10.equals(valueType)) {
       return MeasurementType.PM10;
     } else if (MEASUREMENT_TYPE_PM2_5.equals(valueType)) {
@@ -63,9 +63,9 @@ interface MeasurementValueMapper {
 
   /**
    * Convert original Lufdaten measurement value data set to the AirQ Monitor supported structure.
-   * <p>
    * Only dust sensors PM10 and PM2.5 are supported as it is originally filtered out by Luftdated.
-   * Please see here: https://github.com/opendata-stuttgart/feinstaub-map-v2/blob/master/src/js/feinstaub-api.js
+   *
+   * <p>Please see here: https://github.com/opendata-stuttgart/feinstaub-map-v2/blob/master/src/js/feinstaub-api.js
    * Search for "fetch(URL)" and "num === 1" to find the java script definition for that.
    *
    * @param sensorData Luftdaten data structure built out of the original JSON

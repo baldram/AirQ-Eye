@@ -47,6 +47,12 @@ public interface MeasurementMapper {
     return LocalDateTime.parse(date, DateTimeFormatter.ofPattern(DATE_FORMAT));
   }
 
+  /**
+   * Converts Luftdaten structure into the internal AirQ related one.
+   *
+   * @param data - imported data
+   * @return - converted structure
+   */
   // TODO: rename
   default List<Measurement> fromDtos(List<LuftdatenMeasurement> data) {
     Objects.requireNonNull(data);
@@ -59,6 +65,12 @@ public interface MeasurementMapper {
         .collect(Collectors.toCollection(() -> new ArrayList<>(validData.size())));
   }
 
+  /**
+   * Filters out unsupported data and preserves valid ones.
+   *
+   * @param data - imported data
+   * @return - supported data
+   */
   default List<LuftdatenMeasurement> getValidData(List<LuftdatenMeasurement> data) {
     return data.stream()
         .filter(WITH_SUPPORTED_COUNTRIES

@@ -58,7 +58,7 @@ public class LuftdatenServiceTest {
 
   @Before
   public void setUp() {
-    // with Mockito there is a difficulty to mock the Spring's configuration property injected using @Value annotation
+    // it difficult to mock (with Mockito) the Spring's configuration property injected using @Value
     ReflectionTestUtils.setField(luftdatenService, "updateFrequencyInMinutes", DATA_REFRESH_RANGE);
   }
 

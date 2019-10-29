@@ -39,15 +39,15 @@ public class MeasurementsController {
   }
 
   /**
-   * Provides the latest measurements related to given supplier's installation
+   * Provides the latest measurements related to given supplier's installation.
    *
    * @param supplierInstallationId - supplier's installation id
    * @param supplier - supplier indication
    * @return the latest measurements related to given installation
    */
   @GetMapping(URI_SELECTED_MEASUREMENTS)
-  public List<Measurement> getMeasurement(@PathVariable Long supplierInstallationId,
-      @PathVariable Supplier supplier) {
+  public List<Measurement> getMeasurement(@PathVariable final Long supplierInstallationId,
+      @PathVariable final Supplier supplier) {
     suppliersRegistry.getRegisteredDataClients()
         .forEach(HasUpdatableDataFeed::refreshDataIfRequired);
 

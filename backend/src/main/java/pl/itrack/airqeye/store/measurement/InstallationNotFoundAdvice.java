@@ -11,9 +11,15 @@ import pl.itrack.airqeye.store.measurement.service.InstallationNotFoundException
 @RestControllerAdvice
 public class InstallationNotFoundAdvice {
 
+  /**
+   * Handles invalid REST requests.
+   *
+   * @param exception - an exception to be handled
+   * @return error details
+   */
   @ExceptionHandler(InstallationNotFoundException.class)
-  public ResponseEntity<ErrorMessage> installationNotFoundHandler(
-      InstallationNotFoundException exception) {
+  public final ResponseEntity<ErrorMessage> installationNotFoundHandler(
+      final InstallationNotFoundException exception) {
     return ResponseEntity
         .status(HttpStatus.NOT_FOUND)
         .contentType(MediaType.APPLICATION_JSON)
@@ -21,7 +27,7 @@ public class InstallationNotFoundAdvice {
   }
 
   @Value
-  private class ErrorMessage {
+  private static class ErrorMessage {
 
     private String error;
   }

@@ -31,7 +31,7 @@ public class LuftdatenService implements HasUpdatableDataFeed {
 
   // TODO: Data should be separately retrieved and persisted by some background job.
   @Override
-  public void refreshDataIfRequired() {
+  public final void refreshDataIfRequired() {
     if (isUpdateRequired()) {
       List<Measurement> measurements = this.retrieveData();
       if (!measurements.isEmpty()) {
@@ -48,11 +48,11 @@ public class LuftdatenService implements HasUpdatableDataFeed {
   }
 
   /**
-   * Calls Luftdaten data feed and converts retrieved data to entities ready for persistence
+   * Calls Luftdaten data feed and converts retrieved data to entities ready for persistence.
    *
    * @return list of measurements
    */
-  public List<Measurement> retrieveData() {
+  public final List<Measurement> retrieveData() {
     List<LuftdatenMeasurement> luftdatenResponse = luftdatenClient.retrieveData().getBody();
     return measurementMapper.fromDtos(luftdatenResponse);
   }

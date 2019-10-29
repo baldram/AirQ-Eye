@@ -16,11 +16,16 @@ import pl.itrack.airqeye.store.measurement.repository.InstallationRepository;
 @Slf4j
 public class LoadDatabase {
 
+  /**
+   * Loads the initial test data.
+   *
+   * @param installationRepository - the autowired repository for data persistence
+   */
   @Bean
   public CommandLineRunner initDatabase(InstallationRepository installationRepository) {
     // Installation is a root, but for persistence we take installation from measurement,
     // as while the measurement constructing, JPA reference is set. We used to add new measurements
-    // to the existing installation and then all references (related to bidirectional association) are updated.
+    // to the existing installation, further references (for bidirectional association) are updated.
     final Measurement measurement =
         prebuildMeasurement(LocalDateTime.now().minusYears(5))
             .installation(prebuildInstallation(Supplier.LUFTDATEN).build())

@@ -47,7 +47,8 @@ public class Installation {
   @AttributeOverrides({
       @AttributeOverride(name = "country", column = @Column(name = "COUNTRY")),
       @AttributeOverride(name = "province", column = @Column(name = "PROVINCE")),
-      @AttributeOverride(name = "additionalAddressDetails", column = @Column(name = "ADDITIONAL_ADDRESS_DETAILS"))
+      @AttributeOverride(name = "additionalAddressDetails",
+          column = @Column(name = "ADDITIONAL_ADDRESS_DETAILS"))
   })
   private Address address;
 
@@ -64,7 +65,8 @@ public class Installation {
   @ToString.Exclude
   @Builder.Default
   @JsonIgnore
-  @OneToMany(mappedBy = "installation", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+  @OneToMany(mappedBy = "installation", cascade = CascadeType.ALL,
+      orphanRemoval = true, fetch = FetchType.LAZY)
   private List<Measurement> measurements = new ArrayList<>();
 
 }

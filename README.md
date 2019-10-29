@@ -38,9 +38,13 @@ The rules are intended to improve the readability of code and make it consistent
 
 *   [Google Java Style Guide](https://google.github.io/styleguide/javaguide.html) ([Eclipse Code Style Scheme](https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml) | 
     [IntelliJ Code Style Scheme](https://raw.githubusercontent.com/google/styleguide/gh-pages/intellij-java-google-style.xml)),
+    
 *   [Checkstyle Rules configuration file](utils/checkstyle.xml) that checks the Google coding conventions,
+
 *   Additionally Findbugs and PDM rules to be found in [utils](/utils) folder,
+
 *   [Google HTML/CSS Style Guide](https://google.github.io/styleguide/htmlcssguide.xml),
+
 *   [Google JavaScript Style Guide](https://google.github.io/styleguide/javascriptguide.xml).
 
 ### Markdown Style Guide

@@ -1,7 +1,7 @@
 package pl.itrack.airqeye.store.measurement.enumeration;
 
 /**
- * Units: °C, µg/m3
+ * Units: °C, µg/m3.
  */
 public enum MeasurementUnit {
   CELSIUS,

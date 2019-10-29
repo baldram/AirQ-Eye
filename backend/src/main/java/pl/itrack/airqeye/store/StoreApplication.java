@@ -10,7 +10,7 @@ import org.springframework.context.i18n.LocaleContextHolder;
 @EnableFeignClients
 public class StoreApplication {
 
-  public static void main(String... args) {
+  public static void main(final String... args) {
     configureLocale();
     runApplication(args);
   }
@@ -23,7 +23,7 @@ public class StoreApplication {
     LocaleContextHolder.setDefaultLocale(Locale.US);
   }
 
-  private static void runApplication(String[] args) {
+  private static void runApplication(final String[] args) {
     SpringApplication.run(StoreApplication.class, args);
   }
 }

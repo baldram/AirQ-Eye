@@ -50,7 +50,8 @@ public class MeasurementsControllerITest {
 
   private static final Long EXISTING_INSTALLATION_ID = 333L;
   private static final Long MISSING_INSTALLATION_ID = 666L;
-  private static final String NOT_EXISTING_INSTALLATION_JSON_MESSAGE = "{\"error\":\"Could not find installation %s\"}";
+  private static final String NOT_EXISTING_INSTALLATION_JSON_MESSAGE =
+      "{\"error\":\"Could not find installation %s\"}";
   private static final String URI_MEASUREMENTS = "/measurements";
   private static final String URI_SELECTED_MEASUREMENTS = "/measurements/%s/%d";
 

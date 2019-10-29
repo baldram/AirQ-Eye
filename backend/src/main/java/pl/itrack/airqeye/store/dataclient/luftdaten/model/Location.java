@@ -8,7 +8,7 @@ import lombok.Value;
 
 @Builder
 @Value
-@JsonDeserialize(builder = Location.LocationBuilder.class)
+//@JsonDeserialize(builder = Location.LocationBuilder.class)
 public class Location {
 
   private Long id;
@@ -22,8 +22,8 @@ public class Location {
   @NotNull
   private String country;
 
-  @JsonPOJOBuilder(withPrefix = "")
-  public static final class LocationBuilder {
-
-  }
+//  @JsonPOJOBuilder(withPrefix = "")
+//  public static final class LocationBuilder {
+//
+//  }
 }

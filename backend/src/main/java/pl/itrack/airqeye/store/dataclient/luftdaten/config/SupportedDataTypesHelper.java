@@ -6,9 +6,6 @@ import java.util.List;
 
 public final class SupportedDataTypesHelper {
 
-  private SupportedDataTypesHelper() {
-  }
-
   /**
    * The list of supported sensor types as defined by Luftdaten. See "pm_sensors here:
    * https://github.com/opendata-stuttgart/feinstaub-map-v2/blob/master/src/js/feinstaub-api.js
@@ -26,5 +23,8 @@ public final class SupportedDataTypesHelper {
   public static final String MEASUREMENT_TYPE_PM2_5 = "P2";
   public static final List<String> SUPPORTED_MEASUREMENT_TYPES =
       asList(MEASUREMENT_TYPE_PM10, MEASUREMENT_TYPE_PM2_5);
+
+  private SupportedDataTypesHelper() {
+  }
 
 }

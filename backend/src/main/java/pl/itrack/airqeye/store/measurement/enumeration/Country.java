@@ -13,7 +13,7 @@ public enum Country {
    * @param testedValue - given code to be tested
    * @return true if success, otherwise false
    */
-  public static boolean contains(String testedValue) {
+  public static boolean contains(final String testedValue) {
     return Arrays.stream(values())
         .map(Enum::name)
         .anyMatch(code -> code.equals(testedValue));

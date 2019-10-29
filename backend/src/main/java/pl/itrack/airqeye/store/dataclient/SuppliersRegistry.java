@@ -14,7 +14,7 @@ public class SuppliersRegistry {
   @Autowired
   private LuftdatenService luftdatenService;
 
-  public List<HasUpdatableDataFeed> getRegisteredDataClients() {
+  public final List<HasUpdatableDataFeed> getRegisteredDataClients() {
     return singletonList(luftdatenService);
   }
 }

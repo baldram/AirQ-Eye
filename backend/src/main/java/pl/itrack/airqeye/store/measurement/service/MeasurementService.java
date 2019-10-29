@@ -35,14 +35,14 @@ public class MeasurementService {
   /**
    * Provides the latest measurements related to given supplier's installation.
    *
-   * @param installationId - related installation
+   * @param stationId - related installation
    * @param supplier - related data provider
    * @return measurements
    */
   @Transactional(readOnly = true)
-  public List<Measurement> retrieveMeasurements(final Long installationId, Supplier supplier) {
-    Installation installation = installationRepository.findByProvider(supplier, installationId)
-        .orElseThrow(() -> new InstallationNotFoundException(installationId));
+  public List<Measurement> retrieveMeasurements(final Long stationId, final Supplier supplier) {
+    Installation installation = installationRepository.findByProvider(supplier, stationId)
+        .orElseThrow(() -> new InstallationNotFoundException(stationId));
 
     return installation.getMeasurements();
   }
@@ -54,14 +54,14 @@ public class MeasurementService {
    * @return - installations including persisted measurements
    */
   @Transactional
-  public List<Installation> persist(List<Measurement> measurements) {
+  public List<Installation> persist(final List<Measurement> measurements) {
     final List<Installation> installations = getInstallations(measurements);
     final List<Installation> persistedInstallations = installationRepository.saveAll(installations);
     installationRepository.flush();
     return persistedInstallations;
   }
 
-  private List<Installation> getInstallations(List<Measurement> measurements) {
+  private List<Installation> getInstallations(final List<Measurement> measurements) {
     return measurements.stream()
         .map(Measurement::getInstallation)
         .collect(Collectors.toList());
@@ -73,7 +73,7 @@ public class MeasurementService {
    * @param dataProvider - the supplier
    */
   @Transactional
-  public void removeData(Supplier dataProvider) {
+  public void removeData(final Supplier dataProvider) {
     // FIXME: modify to delete by IDs in batch in partitions
     //  or try to implement delete with where clause by enum
     installationRepository.findByProvider(dataProvider)
@@ -86,7 +86,7 @@ public class MeasurementService {
    * @param dataProvider - the supplier
    * @return date time of the last measurement
    */
-  public LocalDateTime getLatestUpdate(Supplier dataProvider) {
+  public LocalDateTime getLatestUpdate(final Supplier dataProvider) {
     final Optional<LocalDateTime> latestUpdate = installationRepository
         .getLatestUpdate(dataProvider);
     return latestUpdate.orElseGet(() -> LocalDateTime.of(1970, 1, 1, 0, 0, 0));

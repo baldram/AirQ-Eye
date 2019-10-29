@@ -46,8 +46,8 @@ public class MeasurementsController {
    * @return the latest measurements related to given installation
    */
   @GetMapping(URI_SELECTED_MEASUREMENTS)
-  public List<Measurement> getMeasurement(@PathVariable Long supplierInstallationId,
-      @PathVariable Supplier supplier) {
+  public List<Measurement> getMeasurement(@PathVariable final Long supplierInstallationId,
+      @PathVariable final Supplier supplier) {
     suppliersRegistry.getRegisteredDataClients()
         .forEach(HasUpdatableDataFeed::refreshDataIfRequired);
 

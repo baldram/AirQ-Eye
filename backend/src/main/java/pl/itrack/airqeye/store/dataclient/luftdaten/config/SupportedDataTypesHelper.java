@@ -4,7 +4,10 @@ import static java.util.Arrays.asList;
 
 import java.util.List;
 
-public class SupportedDataTypesHelper {
+public final class SupportedDataTypesHelper {
+
+  private SupportedDataTypesHelper() {
+  }
 
   /**
    * The list of supported sensor types as defined by Luftdaten. See "pm_sensors here:

@@ -51,8 +51,8 @@ public class Measurement {
    * @param measurementValues - measured values
    */
   @Builder(toBuilder = true)
-  public Measurement(Long id, LocalDateTime occurredAtUtc, Installation installation,
-      List<MeasurementValue> measurementValues) {
+  public Measurement(final Long id, LocalDateTime occurredAtUtc, final Installation installation,
+      final List<MeasurementValue> measurementValues) {
     this.id = id;
     this.occurredAtUtc = occurredAtUtc;
     // set association including parent reference

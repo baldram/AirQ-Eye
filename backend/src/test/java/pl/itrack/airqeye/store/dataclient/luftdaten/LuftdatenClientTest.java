@@ -58,7 +58,7 @@ class LuftdatenClientTest {
   }
 
   private List<LuftdatenMeasurement> getSampleData() throws IOException {
-    return objectMapper.readValue(getSampleJson(), new TypeReference<List<LuftdatenMeasurement>>() {
+    return objectMapper.readValue(getSampleJson(), new TypeReference<>() {
     });
   }
 

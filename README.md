@@ -39,9 +39,9 @@ The rules are intended to improve the readability of code and make it consistent
 *   [Google Java Style Guide](https://google.github.io/styleguide/javaguide.html) ([Eclipse Code Style Scheme](https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml) | 
     [IntelliJ Code Style Scheme](https://raw.githubusercontent.com/google/styleguide/gh-pages/intellij-java-google-style.xml)),
     
-*   [Checkstyle Rules configuration file](utils/checkstyle.xml) that checks the Google coding conventions,
+*   [Checkstyle Rules configuration file](docs/checkstyle.xml) that checks the Google coding conventions,
 
-*   Additionally Findbugs and PDM rules to be found in [utils](/utils) folder,
+*   Additionally Findbugs and PDM rules to be found in [docs](/docs) folder,
 
 *   [Google HTML/CSS Style Guide](https://google.github.io/styleguide/htmlcssguide.xml),
 
@@ -50,6 +50,6 @@ The rules are intended to improve the readability of code and make it consistent
 ### Markdown Style Guide
 *   please find the [remark-lint](https://github.com/remarkjs/remark-lint#using-remark-to-fix-your-markdown) 
 (for Markdown syntax validation - ensuring that the project's documentation 
-will be correctly rendered in all the different markdown parsers).<br />
+will be correctly rendered in all the different implementations of markdown parser).<br />
 Execute `npm install` and further `npm run lint-md` to validate project's documentation.<br />
 Integration with IntelliJ is also [possible](https://www.jetbrains.com/help/idea/eslint.html) .

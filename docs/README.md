@@ -16,7 +16,7 @@ data: `http://localhost:9000/measurements`
 
 ## A tech stack
 
-*   Build tool: Apache Maven
+*   Build tool: Apache Maven,
 
 *   Backend: Spring Boot, Lombok, JDK 13, Mapstruct,
 
@@ -58,8 +58,8 @@ Please configure code style by importing Google Code Style Scheme depending on e
 
 *   [IntelliJ Code Style Scheme](https://raw.githubusercontent.com/google/styleguide/gh-pages/intellij-java-google-style.xml) 
 
-Please download the file. Then under File -> Settings -> Editor -> Code Style. There in Scheme settings 
-(settings icon on right side) -> import schemes -> Intellij IDEA code style XML. Select the XML downloaded 
+Please download the file. Then under File → Settings → Editor → Code Style. There in Scheme settings 
+(settings icon on right side) → import schemes → Intellij IDEA code style XML. Select the XML downloaded 
 in the first step: `intellij-java-google-style.xml`. 
 
 *   [Eclipse Code Style Scheme](https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml)

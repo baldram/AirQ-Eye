@@ -46,7 +46,7 @@ The rules are intended to improve the readability of code and make it consistent
     
 *   [Checkstyle Rules configuration file](style-guide/checkstyle.xml) that checks the Google coding conventions,
 
-*   Additionally Findbugs and PDM rules to be found in [docs/](./style-guide) folder,
+*   Additionally Findbugs and PDM rules to be found in [docs/](https://github.com/baldram/AirQ-Eye/tree/master/docs/style-guide) folder,
 
 *   [Google HTML/CSS Style Guide](https://google.github.io/styleguide/htmlcssguide.xml),
 
@@ -56,9 +56,9 @@ The rules are intended to improve the readability of code and make it consistent
 
 Please configure code style by importing Google Code Style Scheme depending on editor you use:
 
-*   [IntelliJ Code Style Scheme](https://raw.githubusercontent.com/google/styleguide/gh-pages/intellij-java-google-style.xml) 
-Please download the file. Then under File → Settings → Editor → Code Style. There in Scheme settings 
-(settings icon on right side) → import schemes → Intellij IDEA code style XML. Select the XML downloaded 
+*   For IntelliJ please download the [IntelliJ Code Style Scheme](https://raw.githubusercontent.com/google/styleguide/gh-pages/intellij-java-google-style.xml) file. 
+Then under File → Settings → Editor → Code Style and there in Scheme settings 
+(settings icon on right side) → import schemes → Intellij IDEA code style XML, select the XML downloaded 
 in the first step: `intellij-java-google-style.xml`. 
 
 *   [Eclipse Code Style Scheme](https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml)

@@ -46,7 +46,7 @@ The rules are intended to improve the readability of code and make it consistent
     
 *   [Checkstyle Rules configuration file](style-guide/checkstyle.xml) that checks the Google coding conventions,
 
-*   Additionally Findbugs and PDM rules to be found in [docs](style-guide) folder,
+*   Additionally Findbugs and PDM rules to be found in [docs/](./style-guide) folder,
 
 *   [Google HTML/CSS Style Guide](https://google.github.io/styleguide/htmlcssguide.xml),
 
@@ -69,7 +69,7 @@ The SpotBugs Analyzer (formerly known as FindBugs) was installed to ensure the q
 
 To perform the check please run the following:
 
-```shell script
+```console
 $ cd backend\
 $ mvn clean compile
 $ mvn com.github.spotbugs:spotbugs-maven-plugin:3.1.12.2:check
@@ -77,7 +77,7 @@ $ mvn com.github.spotbugs:spotbugs-maven-plugin:3.1.12.2:check
 
 The expected result is:
 
-```shell script
+```console
 [INFO] --- spotbugs-maven-plugin:3.1.12.2:check (default-cli) @ backend ---
 [INFO] BugInstance size is 0
 [INFO] Error size is 0
@@ -88,7 +88,7 @@ The expected result is:
 
 Use GUI for easier warnings analysis if there any:
 
-```shell script
+```console
 $ mvn com.github.spotbugs:spotbugs-maven-plugin:3.1.12.2:gui
 ``` 
 

@@ -53,7 +53,6 @@ public class LuftdatenService implements HasUpdatableDataFeed {
    * @return list of measurements
    */
   public final List<Measurement> retrieveData() {
-    List<LuftdatenMeasurement> luftdatenResponse = luftdatenClient.retrieveData().getBody();
-    return measurementMapper.fromDtos(luftdatenResponse);
+    return measurementMapper.fromDtos(luftdatenClient.getMeasurements());
   }
 }

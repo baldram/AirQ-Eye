@@ -79,8 +79,7 @@ public class LuftdatenServiceTest {
   private List<LuftdatenMeasurement> getRetrievedDataMock() {
     final List<LuftdatenMeasurement> luftdatenMeasurements = singletonList(
         LuftdatenMeasurement.builder().build());
-    when(luftdatenClient.retrieveData())
-        .thenReturn(new ResponseEntity<>(luftdatenMeasurements, HttpStatus.OK));
+    when(luftdatenClient.getMeasurements()).thenReturn(luftdatenMeasurements);
     return luftdatenMeasurements;
   }
 

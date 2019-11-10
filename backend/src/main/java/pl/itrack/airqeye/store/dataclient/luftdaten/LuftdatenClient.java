@@ -1,5 +1,6 @@
 package pl.itrack.airqeye.store.dataclient.luftdaten;
 
+import java.util.Collections;
 import java.util.List;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.MediaType;
@@ -21,4 +22,8 @@ public interface LuftdatenClient {
           MediaType.APPLICATION_JSON_VALUE
       })
   ResponseEntity<List<LuftdatenMeasurement>> retrieveData();
+
+  default List<LuftdatenMeasurement> getMeasurements() {
+    return this.retrieveData() != null ? this.retrieveData().getBody() : Collections.emptyList();
+  }
 }

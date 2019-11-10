@@ -44,9 +44,9 @@ The rules are intended to improve the readability of code and make it consistent
 
 *   [Google Java Style Guide](https://google.github.io/styleguide/javaguide.html),
     
-*   [Checkstyle Rules configuration file](checkstyle.xml) that checks the Google coding conventions,
+*   [Checkstyle Rules configuration file](style-guide/checkstyle.xml) that checks the Google coding conventions,
 
-*   Additionally Findbugs and PDM rules to be found in [docs](.) folder,
+*   Additionally Findbugs and PDM rules to be found in [docs](style-guide) folder,
 
 *   [Google HTML/CSS Style Guide](https://google.github.io/styleguide/htmlcssguide.xml),
 
@@ -57,16 +57,47 @@ The rules are intended to improve the readability of code and make it consistent
 Please configure code style by importing Google Code Style Scheme depending on editor you use:
 
 *   [IntelliJ Code Style Scheme](https://raw.githubusercontent.com/google/styleguide/gh-pages/intellij-java-google-style.xml) 
-
 Please download the file. Then under File → Settings → Editor → Code Style. There in Scheme settings 
 (settings icon on right side) → import schemes → Intellij IDEA code style XML. Select the XML downloaded 
 in the first step: `intellij-java-google-style.xml`. 
 
 *   [Eclipse Code Style Scheme](https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml)
 
+#### Static Code Analysis
+
+The SpotBugs Analyzer (formerly known as FindBugs) was installed to ensure the quality of the project.
+
+To perform the check please run the following:
+
+```shell script
+$ cd backend\
+$ mvn clean compile
+$ mvn com.github.spotbugs:spotbugs-maven-plugin:3.1.12.2:check
+```
+
+The expected result is:
+
+```shell script
+[INFO] --- spotbugs-maven-plugin:3.1.12.2:check (default-cli) @ backend ---
+[INFO] BugInstance size is 0
+[INFO] Error size is 0
+[INFO] No errors/warnings found
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+```
+
+Use GUI for easier warnings analysis if there any:
+
+```shell script
+$ mvn com.github.spotbugs:spotbugs-maven-plugin:3.1.12.2:gui
+``` 
+
+More options described in [plugin SpotBugs Maven Plugin documentation](https://github.com/spotbugs/spotbugs-maven-plugin) 
+and [SpotBugs Analyzer documentation](https://spotbugs.readthedocs.io/en/latest/index.html).
+
 ### Markdown Style Guide
 *   please find the [remark-lint](https://github.com/remarkjs/remark-lint#using-remark-to-fix-your-markdown) 
 (for Markdown syntax validation - ensuring that the project's documentation 
 will be correctly rendered by all the different implementations of markdown parser).<br />
-From [docs](.) folder, please  Execute `npm install` and further `npm run lint-md` to validate project's 
+From [docs](https://github.com/baldram/AirQ-Eye/tree/master/docs/) folder, please  Execute `npm install` and further `npm run lint-md` to validate project's 
 documentation.<br />Integration with IntelliJ suppose to be also [possible](https://www.jetbrains.com/help/idea/eslint.html) .

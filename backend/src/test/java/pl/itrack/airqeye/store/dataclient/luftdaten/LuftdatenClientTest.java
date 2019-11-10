@@ -1,5 +1,6 @@
 package pl.itrack.airqeye.store.dataclient.luftdaten;
 
+import static java.util.Collections.singletonList;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -22,6 +23,21 @@ class LuftdatenClientTest {
   private static final String JSON_TEST_DATA = "src/test/resources/sample-luftdaten-data.json";
 
   private ObjectMapper objectMapper = Jackson2ObjectMapperBuilder.json().build();
+
+
+  @Test
+  void retrieveMeasurements() {
+    // Given
+    List<LuftdatenMeasurement> measurements = singletonList(
+        LuftdatenMeasurement.builder().id(777L).build());
+    LuftdatenClient client = new TestDataClientAdapter(measurements);
+
+    // When
+    List<LuftdatenMeasurement> retrievedMeasurements = client.getMeasurements();
+
+    // Then
+    assertThat(measurements).isEqualTo(retrievedMeasurements);
+  }
 
   @Test
   @DisplayName("Test if model is consistent with the source JSON and data will be correctly mapped")
@@ -66,4 +82,20 @@ class LuftdatenClientTest {
     Path path = Paths.get(JSON_TEST_DATA);
     return String.join("", Files.readAllLines(path));
   }
+
+  static class TestDataClientAdapter implements LuftdatenClient {
+
+    private List<LuftdatenMeasurement> measurements;
+
+    TestDataClientAdapter(
+        List<LuftdatenMeasurement> measurements) {
+      this.measurements = measurements;
+    }
+
+    @Override
+    public ResponseEntity<List<LuftdatenMeasurement>> retrieveData() {
+      return new ResponseEntity<>(measurements, HttpStatus.OK);
+    }
+  }
+
 }

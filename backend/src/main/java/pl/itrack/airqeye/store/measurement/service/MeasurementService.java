@@ -36,7 +36,7 @@ public class MeasurementService {
    * Provides the latest measurements related to given supplier's installation.
    *
    * @param stationId - related installation
-   * @param supplier - related data provider
+   * @param supplier  - related data provider
    * @return measurements
    */
   @Transactional(readOnly = true)

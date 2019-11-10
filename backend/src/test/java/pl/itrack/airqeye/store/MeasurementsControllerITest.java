@@ -55,12 +55,11 @@ public class MeasurementsControllerITest {
   private static final String URI_MEASUREMENTS = "/measurements";
   private static final String URI_SELECTED_MEASUREMENTS = "/measurements/%s/%d";
 
-  private static final List<String> SUPPORTED_SENSORS =
-      asList("SDS011", "SDS021", "PMS1003", "PMS3003", "PMS5003", "PMS6003", "PMS7003", "HPM",
-          "SPS30");
+  private static final List<String> SUPPORTED_SENSORS = List.of(
+      "SDS011", "SDS021", "PMS1003", "PMS3003", "PMS5003", "PMS6003", "PMS7003", "HPM", "SPS30");
 
-  private static final List<MeasurementType> SUPPORTED_MEASUREMENT_TYPES =
-      asList(MeasurementType.PM10, MeasurementType.PM25);
+  private static final List<MeasurementType> SUPPORTED_MEASUREMENT_TYPES = List.of(
+      MeasurementType.PM10, MeasurementType.PM25);
 
   private ObjectMapper objectMapper = Jackson2ObjectMapperBuilder.json().build();
 
@@ -86,7 +85,7 @@ public class MeasurementsControllerITest {
   private List<LuftdatenMeasurement> getSampleData() throws IOException {
     File resource = sampleData.getFile();
     String json = new String(Files.readAllBytes(resource.toPath()));
-    return objectMapper.readValue(json, new TypeReference<List<LuftdatenMeasurement>>() {
+    return objectMapper.readValue(json, new TypeReference<>() {
     });
   }
 
@@ -109,7 +108,7 @@ public class MeasurementsControllerITest {
 
   private List<Measurement> getResponseBody(MvcResult result) throws IOException {
     String responseBody = result.getResponse().getContentAsString();
-    return objectMapper.readValue(responseBody, new TypeReference<List<Measurement>>() {
+    return objectMapper.readValue(responseBody, new TypeReference<>() {
     });
   }
 

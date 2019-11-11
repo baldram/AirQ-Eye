@@ -1,20 +1,31 @@
 package pl.itrack.airqeye.store.dataclient;
 
-import static java.util.Collections.singletonList;
-
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import pl.itrack.airqeye.store.dataclient.luftdaten.service.LuftdatenService;
 import pl.itrack.airqeye.store.measurement.service.HasUpdatableDataFeed;
 
+/**
+ * The component collects a list of available data suppliers.
+ * <p>
+ * Registering a new data supplier simple as providing a new adapter for HasUpdatableDataFeed. It
+ * will be automatically detected and included in data processing. The are simply injected here by
+ * framework.
+ */
 @Component
 public class SuppliersRegistry {
 
-  @Autowired
-  private LuftdatenService luftdatenService;
+  private List<HasUpdatableDataFeed> dataSuppliers;
 
+  public SuppliersRegistry(List<HasUpdatableDataFeed> dataSuppliers) {
+    this.dataSuppliers = dataSuppliers;
+  }
+
+  /**
+   * Provides a list of all registered data suppliers.
+   *
+   * @return data provider list
+   */
   public final List<HasUpdatableDataFeed> getRegisteredDataClients() {
-    return singletonList(luftdatenService);
+    return dataSuppliers;
   }
 }

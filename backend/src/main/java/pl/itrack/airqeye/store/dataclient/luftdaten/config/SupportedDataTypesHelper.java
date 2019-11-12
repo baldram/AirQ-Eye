@@ -1,7 +1,5 @@
 package pl.itrack.airqeye.store.dataclient.luftdaten.config;
 
-import static java.util.Arrays.asList;
-
 import java.util.List;
 
 public final class SupportedDataTypesHelper {

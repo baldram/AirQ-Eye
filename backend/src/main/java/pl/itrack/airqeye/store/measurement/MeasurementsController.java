@@ -1,7 +1,6 @@
 package pl.itrack.airqeye.store.measurement;
 
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,11 +17,14 @@ public class MeasurementsController {
   private static final String URI_SELECTED_MEASUREMENTS =
       URI_MEASUREMENTS + "/{supplier}/{supplierInstallationId}";
 
-  @Autowired
   private SuppliersRegistry suppliersRegistry;
 
-  @Autowired
   private MeasurementService measurementService;
+
+  public MeasurementsController(SuppliersRegistry suppliers, MeasurementService service) {
+    this.suppliersRegistry = suppliers;
+    this.measurementService = service;
+  }
 
   /**
    * Retrieves and provides data previously persisted in DB from different providers mixed together,
@@ -42,7 +44,7 @@ public class MeasurementsController {
    * Provides the latest measurements related to given supplier's installation.
    *
    * @param supplierInstallationId - supplier's installation id
-   * @param supplier - supplier indication
+   * @param supplier               - supplier indication
    * @return the latest measurements related to given installation
    */
   @GetMapping(URI_SELECTED_MEASUREMENTS)

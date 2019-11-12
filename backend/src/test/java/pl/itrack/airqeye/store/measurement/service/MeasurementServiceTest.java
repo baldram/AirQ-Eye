@@ -5,12 +5,15 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchThrowable;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.List;
 import java.util.Optional;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
@@ -18,6 +21,7 @@ import org.mockito.Captor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
+import pl.itrack.airqeye.store.measurement.adapters.config.MeasurementProperties;
 import pl.itrack.airqeye.store.measurement.entity.Installation;
 import pl.itrack.airqeye.store.measurement.entity.Measurement;
 import pl.itrack.airqeye.store.measurement.enumeration.Supplier;
@@ -29,15 +33,32 @@ public class MeasurementServiceTest {
   private static final long INSTALLATION_ID = 123L;
   private static final long NOT_EXISTING_INSTALLATION_ID = 666L;
   private static final String NOT_EXISTING_INSTALLATION_MESSAGE = "Could not find installation %s";
+  private static final int DATA_REFRESH_RANGE = 10;
+  private static final LocalDateTime PAST_DATE = LocalDateTime.of(2000, 1, 1, 0, 0, 0);
 
   @Mock
   private InstallationRepository installationRepository;
 
+  @Mock
+  private MeasurementProperties measurementProperties;
+
   @Captor
   private ArgumentCaptor<Long> installationIdCapture;
 
+  @Captor
+  private ArgumentCaptor<List<Installation>> installationsCaptor;
+
+  @Captor
+  private ArgumentCaptor<Supplier> supplierCaptor;
+
   @InjectMocks
-  private MeasurementService measurementService = new MeasurementService();
+  private MeasurementService measurementService =
+      new MeasurementService(installationRepository, measurementProperties);
+
+  @Before
+  public void setUp() {
+    when(measurementProperties.getUpdateFrequencyInMinutes()).thenReturn(DATA_REFRESH_RANGE);
+  }
 
   @Test
   public void getLatestUpdate() {
@@ -139,4 +160,55 @@ public class MeasurementServiceTest {
     final Measurement measurement = Measurement.builder().id(id).installation(installation).build();
     return installation.toBuilder().measurements(singletonList(measurement)).build();
   }
+
+  @Test
+  public void updateIfOutdatedMeasurements() {
+    // Given
+    mockLatestUpdateDateResponse(PAST_DATE);
+
+    final Installation installation = Installation.builder().id(3L).build();
+    final java.util.function.Supplier<List<Measurement>> measurementSupplier = () -> List
+        .of(Measurement.builder().installation(installation).build());
+    when(installationRepository.findByProvider(eq(Supplier.LUFTDATEN)))
+        .thenReturn(List.of(installation));
+
+    // When
+    measurementService.refreshDataIfRequired(measurementSupplier, Supplier.LUFTDATEN);
+
+    // Then
+    verify(installationRepository).findByProvider(supplierCaptor.capture());
+    verify(installationRepository).deleteById(eq(installation.getId()));
+    verify(installationRepository).saveAll(installationsCaptor.capture());
+    assertThat(supplierCaptor.getValue()).isEqualTo(Supplier.LUFTDATEN);
+    assertThat(installationsCaptor.getValue()).hasSize(1);
+    assertThat(installationsCaptor.getValue()).isEqualTo(singletonList(installation));
+  }
+
+  private void mockLatestUpdateDateResponse(LocalDateTime dateInValidRange) {
+    when(installationRepository.getLatestUpdate(eq(Supplier.LUFTDATEN)))
+        .thenReturn(Optional.of(dateInValidRange));
+  }
+
+  @Test
+  public void noUpdateRequiredIfActualData() {
+    // Given
+    // Date on border of validity, but still refresh not required.
+    // This test helps to verify whether time zone is considered while calculating validity.
+    final LocalDateTime dateInValidRange = LocalDateTime.now(ZoneOffset.UTC)
+        .minusMinutes(DATA_REFRESH_RANGE - 1);
+    mockLatestUpdateDateResponse(dateInValidRange);
+
+    final Installation installation = Installation.builder().id(3L).build();
+    final java.util.function.Supplier<List<Measurement>> measurementSupplier = () -> List
+        .of(Measurement.builder().installation(installation).build());
+
+    // When
+    measurementService.refreshDataIfRequired(measurementSupplier, Supplier.LUFTDATEN);
+
+    // Then
+    verify(installationRepository, never()).findByProvider(any());
+    verify(installationRepository, never()).deleteById(eq(installation.getId()));
+    verify(installationRepository, never()).saveAll(any());
+  }
+
 }

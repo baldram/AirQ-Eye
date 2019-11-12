@@ -1,13 +1,14 @@
 package pl.itrack.airqeye.store.measurement.service;
 
 import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import pl.itrack.airqeye.store.measurement.adapters.config.MeasurementProperties;
 import pl.itrack.airqeye.store.measurement.entity.Installation;
 import pl.itrack.airqeye.store.measurement.entity.Measurement;
 import pl.itrack.airqeye.store.measurement.enumeration.Supplier;
@@ -16,8 +17,16 @@ import pl.itrack.airqeye.store.measurement.repository.InstallationRepository;
 @Service
 public class MeasurementService {
 
-  @Autowired
   private InstallationRepository installationRepository;
+
+  private MeasurementProperties measurementProperties;
+
+  public MeasurementService(
+      InstallationRepository installationRepository,
+      MeasurementProperties properties) {
+    this.installationRepository = installationRepository;
+    this.measurementProperties = properties;
+  }
 
   /**
    * Retrieves measurements from all providers.
@@ -45,6 +54,25 @@ public class MeasurementService {
         .orElseThrow(() -> new InstallationNotFoundException(stationId));
 
     return installation.getMeasurements();
+  }
+
+  @Transactional
+  public void refreshDataIfRequired(
+      java.util.function.Supplier<List<Measurement>> dataFeed,
+      Supplier dataProvider) {
+    if (isUpdateRequired(dataProvider)) {
+      List<Measurement> measurements = dataFeed.get();
+      if (!measurements.isEmpty()) {
+        removeData(dataProvider);
+        persist(measurements);
+      }
+    }
+  }
+
+  private boolean isUpdateRequired(Supplier supplier) {
+    LocalDateTime lastUpdateUtc = getLatestUpdate(supplier);
+    return LocalDateTime.now(ZoneOffset.UTC)
+        .isAfter(lastUpdateUtc.plusMinutes(measurementProperties.getUpdateFrequencyInMinutes()));
   }
 
   /**
@@ -86,6 +114,7 @@ public class MeasurementService {
    * @param dataProvider - the supplier
    * @return date time of the last measurement
    */
+  @Transactional(readOnly = true)
   public LocalDateTime getLatestUpdate(final Supplier dataProvider) {
     final Optional<LocalDateTime> latestUpdate = installationRepository
         .getLatestUpdate(dataProvider);

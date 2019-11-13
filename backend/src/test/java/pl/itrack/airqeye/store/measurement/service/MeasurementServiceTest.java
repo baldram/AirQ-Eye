@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Supplier;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -24,7 +25,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 import pl.itrack.airqeye.store.measurement.adapters.config.MeasurementProperties;
 import pl.itrack.airqeye.store.measurement.entity.Installation;
 import pl.itrack.airqeye.store.measurement.entity.Measurement;
-import pl.itrack.airqeye.store.measurement.enumeration.Supplier;
+import pl.itrack.airqeye.store.measurement.enumeration.Feeder;
 import pl.itrack.airqeye.store.measurement.repository.InstallationRepository;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -49,7 +50,7 @@ public class MeasurementServiceTest {
   private ArgumentCaptor<List<Installation>> installationsCaptor;
 
   @Captor
-  private ArgumentCaptor<Supplier> supplierCaptor;
+  private ArgumentCaptor<Feeder> feederCaptor;
 
   @InjectMocks
   private MeasurementService measurementService =
@@ -64,11 +65,11 @@ public class MeasurementServiceTest {
   public void getLatestUpdate() {
     // Given
     final LocalDateTime lastUpdateTime = LocalDateTime.now();
-    when(installationRepository.getLatestUpdate(any(Supplier.class)))
+    when(installationRepository.getLatestUpdate(any(Feeder.class)))
         .thenReturn(Optional.of(lastUpdateTime));
 
     // When
-    final LocalDateTime result = measurementService.getLatestUpdate(Supplier.LUFTDATEN);
+    final LocalDateTime result = measurementService.getLatestUpdate(Feeder.LUFTDATEN);
 
     // Then
     assertThat(result).isEqualTo(lastUpdateTime);
@@ -95,13 +96,13 @@ public class MeasurementServiceTest {
     // Given
     final List<Measurement> measurements = singletonList(Measurement.builder().id(1L).build());
     final Optional<Installation> installation = Optional.of(Installation.builder()
-        .supplierInstallationId(INSTALLATION_ID).measurements(measurements).build());
-    when(installationRepository.findByProvider(eq(Supplier.LUFTDATEN), eq(INSTALLATION_ID)))
+        .feederInstallationId(INSTALLATION_ID).measurements(measurements).build());
+    when(installationRepository.findByProvider(eq(Feeder.LUFTDATEN), eq(INSTALLATION_ID)))
         .thenReturn(installation);
 
     // When
     final List<Measurement> result = measurementService
-        .retrieveMeasurements(INSTALLATION_ID, Supplier.LUFTDATEN);
+        .retrieveMeasurements(INSTALLATION_ID, Feeder.LUFTDATEN);
 
     // Then
     assertThat(result).isEqualTo(measurements);
@@ -111,7 +112,7 @@ public class MeasurementServiceTest {
   public void throwErrorIfSpecifiedInstallationNotFound() {
     // When
     final Throwable expectedError = catchThrowable(() ->
-        measurementService.retrieveMeasurements(NOT_EXISTING_INSTALLATION_ID, Supplier.LUFTDATEN));
+        measurementService.retrieveMeasurements(NOT_EXISTING_INSTALLATION_ID, Feeder.LUFTDATEN));
 
     // Then
     assertThat(expectedError).isInstanceOf(InstallationNotFoundException.class)
@@ -122,7 +123,7 @@ public class MeasurementServiceTest {
   @Test
   public void removeData() {
     // Given
-    final Supplier dataProvider = Supplier.LUFTDATEN;
+    final Feeder dataProvider = Feeder.LUFTDATEN;
     final Installation installation = Installation.builder().id(1L).build();
     when(installationRepository.findByProvider(eq(dataProvider)))
         .thenReturn(singletonList(installation));
@@ -167,25 +168,25 @@ public class MeasurementServiceTest {
     mockLatestUpdateDateResponse(PAST_DATE);
 
     final Installation installation = Installation.builder().id(3L).build();
-    final java.util.function.Supplier<List<Measurement>> measurementSupplier = () -> List
+    final Supplier<List<Measurement>> measurementSupplier = () -> List
         .of(Measurement.builder().installation(installation).build());
-    when(installationRepository.findByProvider(eq(Supplier.LUFTDATEN)))
+    when(installationRepository.findByProvider(eq(Feeder.LUFTDATEN)))
         .thenReturn(List.of(installation));
 
     // When
-    measurementService.refreshDataIfRequired(measurementSupplier, Supplier.LUFTDATEN);
+    measurementService.refreshDataIfRequired(measurementSupplier, Feeder.LUFTDATEN);
 
     // Then
-    verify(installationRepository).findByProvider(supplierCaptor.capture());
+    verify(installationRepository).findByProvider(feederCaptor.capture());
     verify(installationRepository).deleteById(eq(installation.getId()));
     verify(installationRepository).saveAll(installationsCaptor.capture());
-    assertThat(supplierCaptor.getValue()).isEqualTo(Supplier.LUFTDATEN);
+    assertThat(feederCaptor.getValue()).isEqualTo(Feeder.LUFTDATEN);
     assertThat(installationsCaptor.getValue()).hasSize(1);
     assertThat(installationsCaptor.getValue()).isEqualTo(singletonList(installation));
   }
 
   private void mockLatestUpdateDateResponse(LocalDateTime dateInValidRange) {
-    when(installationRepository.getLatestUpdate(eq(Supplier.LUFTDATEN)))
+    when(installationRepository.getLatestUpdate(eq(Feeder.LUFTDATEN)))
         .thenReturn(Optional.of(dateInValidRange));
   }
 
@@ -199,11 +200,11 @@ public class MeasurementServiceTest {
     mockLatestUpdateDateResponse(dateInValidRange);
 
     final Installation installation = Installation.builder().id(3L).build();
-    final java.util.function.Supplier<List<Measurement>> measurementSupplier = () -> List
+    final Supplier<List<Measurement>> measurementSupplier = () -> List
         .of(Measurement.builder().installation(installation).build());
 
     // When
-    measurementService.refreshDataIfRequired(measurementSupplier, Supplier.LUFTDATEN);
+    measurementService.refreshDataIfRequired(measurementSupplier, Feeder.LUFTDATEN);
 
     // Then
     verify(installationRepository, never()).findByProvider(any());

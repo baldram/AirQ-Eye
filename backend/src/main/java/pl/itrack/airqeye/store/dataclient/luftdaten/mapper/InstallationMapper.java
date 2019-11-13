@@ -12,8 +12,8 @@ interface InstallationMapper {
 
   @Mapping(target = "id", ignore = true)
   @Mapping(target = "address", source = "location")
-  @Mapping(target = "supplier", constant = "LUFTDATEN")
-  @Mapping(target = "supplierInstallationId", expression = "java(dataFeed.getLocation().getId())")
+  @Mapping(target = "feeder", constant = "LUFTDATEN")
+  @Mapping(target = "feederInstallationId", expression = "java(dataFeed.getLocation().getId())")
   @Mapping(target = "measurements", ignore = true)
   Installation fromDto(LuftdatenMeasurement dataFeed);
 }

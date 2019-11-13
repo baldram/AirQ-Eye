@@ -9,7 +9,7 @@ public class MeasurementProperties {
   private int updateFrequencyInMinutes;
 
   public MeasurementProperties(
-      @Value("${airq-eye.update-frequency-in-minutes:5}") int updateFrequencyInMinutes) {
+      @Value("${airq-eye.update-frequency-in-minutes:10}") int updateFrequencyInMinutes) {
     this.updateFrequencyInMinutes = updateFrequencyInMinutes;
   }
 

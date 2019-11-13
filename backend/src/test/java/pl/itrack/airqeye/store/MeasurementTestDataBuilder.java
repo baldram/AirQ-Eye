@@ -10,13 +10,13 @@ import pl.itrack.airqeye.store.measurement.entity.Measurement;
 import pl.itrack.airqeye.store.measurement.entity.MeasurementValue;
 import pl.itrack.airqeye.store.measurement.entity.Sensor;
 import pl.itrack.airqeye.store.measurement.enumeration.Country;
+import pl.itrack.airqeye.store.measurement.enumeration.Feeder;
 import pl.itrack.airqeye.store.measurement.enumeration.MeasurementType;
 import pl.itrack.airqeye.store.measurement.enumeration.Province;
-import pl.itrack.airqeye.store.measurement.enumeration.Supplier;
 
 public class MeasurementTestDataBuilder {
 
-  private static final long SUPPLIER_INSTALLATION_ID = 149L;
+  private static final long FEEDER_INSTALLATION_ID = 149L;
 
   /**
    * Builds test data set with variable measurement date.
@@ -41,19 +41,19 @@ public class MeasurementTestDataBuilder {
         .build();
   }
 
-  public static Installation.InstallationBuilder prebuildInstallation(Supplier supplier) {
-    return prebuildInstallation(supplier, SUPPLIER_INSTALLATION_ID);
+  public static Installation.InstallationBuilder prebuildInstallation(Feeder feeder) {
+    return prebuildInstallation(feeder, FEEDER_INSTALLATION_ID);
   }
 
   /**
-   * Builds installation data for given data provider and with variable supplier id.
+   * Builds installation data for given data provider and with variable feeder id.
    *
-   * @param supplier - given data supplier
-   * @param supplierInstallationId - installation external id from the supplier DB
+   * @param feeder               - given data feeder
+   * @param feederInstallationId - installation external id from the feeder DB
    * @return prebuilt installation data
    */
-  public static Installation.InstallationBuilder prebuildInstallation(Supplier supplier,
-      Long supplierInstallationId) {
+  public static Installation.InstallationBuilder prebuildInstallation(Feeder feeder,
+      Long feederInstallationId) {
     Address address = Address.builder()
         .country(Country.PL)
         .province(Province.POMORSKIE)
@@ -61,7 +61,7 @@ public class MeasurementTestDataBuilder {
         .build();
 
     Sensor sensor = Sensor.builder()
-        .supplierSensorId(323L)
+        .feederSensorId(323L)
         .manufacturer("Nova Fitness")
         .description("SDS011") // name
         .build();
@@ -69,8 +69,8 @@ public class MeasurementTestDataBuilder {
     return Installation.builder()
         .location(Location.builder().latitude(51.094).longitude(17.002).elevation(124).build())
         .address(address)
-        .supplier(supplier)
-        .supplierInstallationId(supplierInstallationId)
+        .feeder(feeder)
+        .feederInstallationId(feederInstallationId)
         .sensor(sensor);
   }
 }

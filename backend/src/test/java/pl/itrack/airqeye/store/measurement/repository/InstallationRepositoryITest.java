@@ -16,15 +16,15 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import pl.itrack.airqeye.store.measurement.entity.Installation;
 import pl.itrack.airqeye.store.measurement.entity.Measurement;
-import pl.itrack.airqeye.store.measurement.enumeration.Supplier;
+import pl.itrack.airqeye.store.measurement.enumeration.Feeder;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
 public class InstallationRepositoryITest {
 
-  private static final long SUPPLIER_INSTALLATION_ID_1 = 1L;
-  private static final long SUPPLIER_INSTALLATION_ID_2 = 2L;
-  private static final long SUPPLIER_INSTALLATION_ID_3 = 3L;
+  private static final long FEEDER_INSTALLATION_ID_1 = 1L;
+  private static final long FEEDER_INSTALLATION_ID_2 = 2L;
+  private static final long FEEDER_INSTALLATION_ID_3 = 3L;
 
   private static final LocalDateTime DATE_1
       = LocalDateTime.of(9999, 9, 11, 2, 3, 5);
@@ -44,7 +44,7 @@ public class InstallationRepositoryITest {
     buildAndPersistInstallations();
 
     // When
-    List<Installation> result = repository.findByProvider(Supplier.LUFTDATEN);
+    List<Installation> result = repository.findByProvider(Feeder.LUFTDATEN);
 
     // Then
     assertThat(result).isNotEmpty();
@@ -56,12 +56,12 @@ public class InstallationRepositoryITest {
     repository.deleteAll();
 
     // there are existing installations without any measurements yet
-    final Installation installation1 = prebuildInstallation(Supplier.LUFTDATEN,
-        SUPPLIER_INSTALLATION_ID_1).build();
-    final Installation installation2 = prebuildInstallation(Supplier.LUFTDATEN,
-        SUPPLIER_INSTALLATION_ID_2).build();
-    final Installation installation3 = prebuildInstallation(Supplier.GIOS,
-        SUPPLIER_INSTALLATION_ID_3).build();
+    final Installation installation1 = prebuildInstallation(Feeder.LUFTDATEN,
+        FEEDER_INSTALLATION_ID_1).build();
+    final Installation installation2 = prebuildInstallation(Feeder.LUFTDATEN,
+        FEEDER_INSTALLATION_ID_2).build();
+    final Installation installation3 = prebuildInstallation(Feeder.GIOS,
+        FEEDER_INSTALLATION_ID_3).build();
     List<Installation> persistedInstallations = repository
         .saveAll(asList(installation1, installation2, installation3));
 
@@ -92,13 +92,13 @@ public class InstallationRepositoryITest {
 
     // When
     Optional<Installation> result = repository
-        .findByProvider(Supplier.LUFTDATEN, SUPPLIER_INSTALLATION_ID_2);
+        .findByProvider(Feeder.LUFTDATEN, FEEDER_INSTALLATION_ID_2);
 
     // Then
     assertThat(result).isNotEmpty();
     assertThat(result).isPresent();
     assertThat(result).hasValueSatisfying(value ->
-        assertThat(value.getSupplierInstallationId()).isEqualTo(SUPPLIER_INSTALLATION_ID_2));
+        assertThat(value.getFeederInstallationId()).isEqualTo(FEEDER_INSTALLATION_ID_2));
   }
 
   @Test
@@ -107,11 +107,10 @@ public class InstallationRepositoryITest {
     buildAndPersistInstallations();
 
     // When
-    Optional<Installation> result = repository.findByProvider(Supplier.LUFTDATEN, 666L);
+    Optional<Installation> result = repository.findByProvider(Feeder.LUFTDATEN, 666L);
 
     // Then
     assertThat(result).isEmpty();
-    assertThat(result.isPresent()).isEqualTo(false);
   }
 
   @Test
@@ -120,7 +119,7 @@ public class InstallationRepositoryITest {
     buildAndPersistInstallations();
 
     // When
-    List<Installation> result = repository.findByProvider(Supplier.AIRLY);
+    List<Installation> result = repository.findByProvider(Feeder.AIRLY);
 
     // Then
     // only LUFTDATEN and GIOS data were persisted, so no data for AIRLY
@@ -133,7 +132,7 @@ public class InstallationRepositoryITest {
     buildAndPersistInstallations();
 
     // When
-    final Optional<LocalDateTime> determinedDate = repository.getLatestUpdate(Supplier.LUFTDATEN);
+    final Optional<LocalDateTime> determinedDate = repository.getLatestUpdate(Feeder.LUFTDATEN);
 
     // Then
     // Even DATE_4 is the latest one, it's not considered (it's other provider relevant).
@@ -147,7 +146,7 @@ public class InstallationRepositoryITest {
     repository.deleteAll();
 
     // When
-    final Optional<LocalDateTime> determinedDate = repository.getLatestUpdate(Supplier.LUFTDATEN);
+    final Optional<LocalDateTime> determinedDate = repository.getLatestUpdate(Feeder.LUFTDATEN);
 
     // Then
     assertThat(determinedDate.isPresent()).isFalse();

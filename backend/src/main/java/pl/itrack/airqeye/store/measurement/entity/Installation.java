@@ -21,7 +21,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import pl.itrack.airqeye.store.measurement.enumeration.Supplier;
+import pl.itrack.airqeye.store.measurement.enumeration.Feeder;
 
 @Data
 @Builder(toBuilder = true)
@@ -53,10 +53,10 @@ public class Installation {
   private Address address;
 
   @Enumerated
-  private Supplier supplier;
+  private Feeder feeder;
 
-  @Column(name = "SUPPLIER_INSTALLATION_ID")
-  private Long supplierInstallationId;
+  @Column(name = "FEEDER_INSTALLATION_ID")
+  private Long feederInstallationId;
 
   @OneToOne(cascade = CascadeType.ALL)
   private Sensor sensor;

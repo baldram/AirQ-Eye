@@ -45,9 +45,9 @@ public class Measurement {
   /**
    * Constructs the Measurement object and updates references (for bidirectional association).
    *
-   * @param id - DB id
-   * @param occurredAtUtc - date time of the measurement
-   * @param installation - related installation
+   * @param id                - DB id
+   * @param occurredAtUtc     - date time of the measurement
+   * @param installation      - related installation
    * @param measurementValues - measured values
    */
   @Builder(toBuilder = true)

@@ -9,7 +9,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import pl.itrack.airqeye.store.measurement.entity.Measurement;
-import pl.itrack.airqeye.store.measurement.enumeration.Supplier;
+import pl.itrack.airqeye.store.measurement.enumeration.Feeder;
 import pl.itrack.airqeye.store.measurement.repository.InstallationRepository;
 
 @Configuration
@@ -28,7 +28,7 @@ public class LoadDatabase {
     // to the existing installation, further references (for bidirectional association) are updated.
     final Measurement measurement =
         prebuildMeasurement(LocalDateTime.now().minusYears(5))
-            .installation(prebuildInstallation(Supplier.LUFTDATEN).build())
+            .installation(prebuildInstallation(Feeder.LUFTDATEN).build())
             .build();
     return args -> log
         .info("Preloading " + installationRepository.save(measurement.getInstallation()));

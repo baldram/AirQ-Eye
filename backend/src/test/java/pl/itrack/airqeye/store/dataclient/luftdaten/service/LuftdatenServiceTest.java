@@ -5,7 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
-import static pl.itrack.airqeye.store.measurement.enumeration.Supplier.LUFTDATEN;
+import static pl.itrack.airqeye.store.measurement.enumeration.Feeder.LUFTDATEN;
 
 import java.util.List;
 import java.util.function.Supplier;
@@ -20,6 +20,7 @@ import pl.itrack.airqeye.store.dataclient.luftdaten.LuftdatenClient;
 import pl.itrack.airqeye.store.dataclient.luftdaten.mapper.MeasurementMapper;
 import pl.itrack.airqeye.store.dataclient.luftdaten.model.LuftdatenMeasurement;
 import pl.itrack.airqeye.store.measurement.entity.Measurement;
+import pl.itrack.airqeye.store.measurement.enumeration.Feeder;
 import pl.itrack.airqeye.store.measurement.service.MeasurementService;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -41,7 +42,7 @@ public class LuftdatenServiceTest {
   private ArgumentCaptor<Supplier<List<Measurement>>> measurementSupplierCaptor;
 
   @Captor
-  private ArgumentCaptor<pl.itrack.airqeye.store.measurement.enumeration.Supplier> feederCaptor;
+  private ArgumentCaptor<Feeder> feederCaptor;
 
   @InjectMocks
   private LuftdatenService luftdatenService = new LuftdatenService(

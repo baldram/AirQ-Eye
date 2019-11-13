@@ -1,12 +1,13 @@
 package pl.itrack.airqeye.store.dataclient.luftdaten.service;
 
 import java.util.List;
+import java.util.function.Supplier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.itrack.airqeye.store.dataclient.luftdaten.LuftdatenClient;
 import pl.itrack.airqeye.store.dataclient.luftdaten.mapper.MeasurementMapper;
 import pl.itrack.airqeye.store.measurement.entity.Measurement;
-import pl.itrack.airqeye.store.measurement.enumeration.Supplier;
+import pl.itrack.airqeye.store.measurement.enumeration.Feeder;
 import pl.itrack.airqeye.store.measurement.service.HasUpdatableDataFeed;
 import pl.itrack.airqeye.store.measurement.service.MeasurementService;
 
@@ -32,8 +33,8 @@ public class LuftdatenService implements HasUpdatableDataFeed {
   @Override
   @Transactional
   public void refreshDataIfRequired() {
-    java.util.function.Supplier<List<Measurement>> luftdatenFeed = this::retrieveData;
-    measurementService.refreshDataIfRequired(luftdatenFeed, Supplier.LUFTDATEN);
+    final Supplier<List<Measurement>> luftdatenFeed = this::retrieveData;
+    measurementService.refreshDataIfRequired(luftdatenFeed, Feeder.LUFTDATEN);
   }
 
   /**

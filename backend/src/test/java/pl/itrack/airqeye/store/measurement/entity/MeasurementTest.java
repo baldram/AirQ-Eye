@@ -6,7 +6,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.time.LocalDateTime;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import pl.itrack.airqeye.store.measurement.enumeration.Supplier;
+import pl.itrack.airqeye.store.measurement.enumeration.Feeder;
 
 /**
  * Test one-to-many association whether objects are correctly linked. Check whether child table
@@ -20,7 +20,7 @@ class MeasurementTest {
   private static final LocalDateTime OCCURRED_AT = LocalDateTime.now();
   private static final double VALUE_1 = 666d;
   private static final double VALUE_2 = 777d;
-  private static final Supplier SUPPLIER = Supplier.AIRLY;
+  private static final Feeder FEEDER = Feeder.AIRLY;
 
   @Test
   @DisplayName("Handle circular references")
@@ -28,7 +28,7 @@ class MeasurementTest {
     // Given
     final MeasurementValue measurementValue1 = MeasurementValue.builder().value(VALUE_1).build();
     final MeasurementValue measurementValue2 = MeasurementValue.builder().value(VALUE_2).build();
-    final Installation installation = Installation.builder().id(INSTALLATION_ID).supplier(SUPPLIER)
+    final Installation installation = Installation.builder().id(INSTALLATION_ID).feeder(FEEDER)
         .build();
 
     // When
@@ -42,7 +42,7 @@ class MeasurementTest {
     // Then
     assertThat(measurement.getOccurredAtUtc()).isEqualTo(OCCURRED_AT);
     assertThat(measurement.getId()).isEqualTo(MEASUREMENT_ID);
-    assertThat(measurement.getInstallation().getSupplier()).isEqualTo(SUPPLIER);
+    assertThat(measurement.getInstallation().getFeeder()).isEqualTo(FEEDER);
     assertThat(measurement.getInstallation().getMeasurements()).containsOnly(measurement);
     assertThat(measurement.getMeasurementValues()).isNotNull();
     assertThat(measurement.getMeasurementValues()).hasSize(2);

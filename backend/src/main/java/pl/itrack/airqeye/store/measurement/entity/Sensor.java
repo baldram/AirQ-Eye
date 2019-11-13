@@ -22,8 +22,8 @@ public class Sensor {
   @GeneratedValue
   private Long id;
 
-  @Column(name = "SUPPLIER_SENSOR_ID")
-  private Long supplierSensorId;
+  @Column(name = "FEEDER_SENSOR_ID")
+  private Long feederSensorId;
 
   private String manufacturer;
 

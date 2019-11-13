@@ -1,13 +1,12 @@
 package pl.itrack.airqeye.store.measurement;
 
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
-import pl.itrack.airqeye.store.dataclient.SuppliersRegistry;
+import pl.itrack.airqeye.store.dataclient.FeederRegistry;
 import pl.itrack.airqeye.store.measurement.entity.Measurement;
-import pl.itrack.airqeye.store.measurement.enumeration.Supplier;
+import pl.itrack.airqeye.store.measurement.enumeration.Feeder;
 import pl.itrack.airqeye.store.measurement.service.HasUpdatableDataFeed;
 import pl.itrack.airqeye.store.measurement.service.MeasurementService;
 
@@ -16,13 +15,16 @@ public class MeasurementsController {
 
   private static final String URI_MEASUREMENTS = "/measurements";
   private static final String URI_SELECTED_MEASUREMENTS =
-      URI_MEASUREMENTS + "/{supplier}/{supplierInstallationId}";
+      URI_MEASUREMENTS + "/{feeder}/{feederInstallationId}";
 
-  @Autowired
-  private SuppliersRegistry suppliersRegistry;
+  private FeederRegistry feederRegistry;
 
-  @Autowired
   private MeasurementService measurementService;
+
+  public MeasurementsController(FeederRegistry feeders, MeasurementService service) {
+    this.feederRegistry = feeders;
+    this.measurementService = service;
+  }
 
   /**
    * Retrieves and provides data previously persisted in DB from different providers mixed together,
@@ -32,25 +34,25 @@ public class MeasurementsController {
    */
   @GetMapping(URI_MEASUREMENTS)
   public List<Measurement> getMeasurements() {
-    suppliersRegistry.getRegisteredDataClients()
+    feederRegistry.getRegisteredDataClients()
         .forEach(HasUpdatableDataFeed::refreshDataIfRequired);
 
     return measurementService.retrieveMeasurements();
   }
 
   /**
-   * Provides the latest measurements related to given supplier's installation.
+   * Provides the latest measurements related to given feeder's installation.
    *
-   * @param supplierInstallationId - supplier's installation id
-   * @param supplier - supplier indication
+   * @param feederInstallationId - feeder's installation id
+   * @param feeder               - feeder indication
    * @return the latest measurements related to given installation
    */
   @GetMapping(URI_SELECTED_MEASUREMENTS)
-  public List<Measurement> getMeasurement(@PathVariable final Long supplierInstallationId,
-      @PathVariable final Supplier supplier) {
-    suppliersRegistry.getRegisteredDataClients()
+  public List<Measurement> getMeasurement(@PathVariable final Long feederInstallationId,
+      @PathVariable final Feeder feeder) {
+    feederRegistry.getRegisteredDataClients()
         .forEach(HasUpdatableDataFeed::refreshDataIfRequired);
 
-    return measurementService.retrieveMeasurements(supplierInstallationId, supplier);
+    return measurementService.retrieveMeasurements(feederInstallationId, feeder);
   }
 }

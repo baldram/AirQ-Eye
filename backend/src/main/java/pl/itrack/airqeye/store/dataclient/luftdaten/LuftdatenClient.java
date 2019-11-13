@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import pl.itrack.airqeye.store.dataclient.luftdaten.model.LuftdatenMeasurement;
 
 @Component
-@FeignClient(name = "supplier-luftdaten",
+@FeignClient(name = "feeder-luftdaten",
     decode404 = true,
-    url = "${supplier-luftdaten.url}")
+    url = "${feeder-luftdaten.url}")
 public interface LuftdatenClient {
 
   @RequestMapping(value = "/static/v2/data.dust.min.json",

@@ -1,6 +1,5 @@
 package pl.itrack.airqeye.store;
 
-import static java.util.Arrays.asList;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -39,8 +38,8 @@ import pl.itrack.airqeye.store.dataclient.luftdaten.LuftdatenClient;
 import pl.itrack.airqeye.store.dataclient.luftdaten.model.LuftdatenMeasurement;
 import pl.itrack.airqeye.store.measurement.entity.Measurement;
 import pl.itrack.airqeye.store.measurement.entity.MeasurementValue;
+import pl.itrack.airqeye.store.measurement.enumeration.Feeder;
 import pl.itrack.airqeye.store.measurement.enumeration.MeasurementType;
-import pl.itrack.airqeye.store.measurement.enumeration.Supplier;
 import pl.itrack.airqeye.store.measurement.repository.InstallationRepository;
 
 @RunWith(SpringRunner.class)
@@ -141,7 +140,7 @@ public class MeasurementsControllerITest {
     // given
     createTestDataWithOneInstallation(EXISTING_INSTALLATION_ID);
     final String apiUri = String
-        .format(URI_SELECTED_MEASUREMENTS, Supplier.LUFTDATEN, EXISTING_INSTALLATION_ID);
+        .format(URI_SELECTED_MEASUREMENTS, Feeder.LUFTDATEN, EXISTING_INSTALLATION_ID);
 
     // when
     final ResultActions result = this.mockMvc.perform(get(apiUri));
@@ -160,8 +159,8 @@ public class MeasurementsControllerITest {
     repository.deleteAll();
     final Measurement measurement =
         prebuildMeasurement(LocalDateTime.now().minusYears(5))
-            .installation(prebuildInstallation(Supplier.LUFTDATEN)
-                .supplierInstallationId(installationId)
+            .installation(prebuildInstallation(Feeder.LUFTDATEN)
+                .feederInstallationId(installationId)
                 .build())
             .build();
     repository.save(measurement.getInstallation());
@@ -173,7 +172,7 @@ public class MeasurementsControllerITest {
     // given
     createTestDataWithOneInstallation(EXISTING_INSTALLATION_ID);
     final String apiUri = String
-        .format(URI_SELECTED_MEASUREMENTS, Supplier.LUFTDATEN, MISSING_INSTALLATION_ID);
+        .format(URI_SELECTED_MEASUREMENTS, Feeder.LUFTDATEN, MISSING_INSTALLATION_ID);
 
     // when
     final ResultActions result = this.mockMvc.perform(get(apiUri));

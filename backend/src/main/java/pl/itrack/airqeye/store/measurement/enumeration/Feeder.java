@@ -1,5 +1,5 @@
 package pl.itrack.airqeye.store.measurement.enumeration;
 
-public enum Supplier {
+public enum Feeder {
   LUFTDATEN, AIRLY, ARMAAG, GIOS
 }

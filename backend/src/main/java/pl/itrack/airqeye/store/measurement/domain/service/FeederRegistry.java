@@ -1,8 +1,7 @@
-package pl.itrack.airqeye.store.dataclient;
+package pl.itrack.airqeye.store.measurement.domain.service;
 
 import java.util.List;
 import org.springframework.stereotype.Component;
-import pl.itrack.airqeye.store.measurement.service.HasUpdatableDataFeed;
 
 /**
  * The component collects a list of available data feeders.

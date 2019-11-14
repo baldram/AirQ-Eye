@@ -1,13 +1,13 @@
-package pl.itrack.airqeye.store.measurement;
+package pl.itrack.airqeye.store.measurement.adapters.web;
 
 import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
-import pl.itrack.airqeye.store.dataclient.FeederRegistry;
+import pl.itrack.airqeye.store.measurement.domain.enumeration.Feeder;
+import pl.itrack.airqeye.store.measurement.domain.service.FeederRegistry;
+import pl.itrack.airqeye.store.measurement.domain.service.HasUpdatableDataFeed;
 import pl.itrack.airqeye.store.measurement.entity.Measurement;
-import pl.itrack.airqeye.store.measurement.enumeration.Feeder;
-import pl.itrack.airqeye.store.measurement.service.HasUpdatableDataFeed;
 import pl.itrack.airqeye.store.measurement.service.MeasurementService;
 
 @RestController
@@ -34,9 +34,8 @@ public class MeasurementsController {
    */
   @GetMapping(URI_MEASUREMENTS)
   public List<Measurement> getMeasurements() {
-    feederRegistry.getRegisteredDataClients()
-        .forEach(HasUpdatableDataFeed::refreshDataIfRequired);
 
+    refreshData();
     return measurementService.retrieveMeasurements();
   }
 
@@ -48,11 +47,17 @@ public class MeasurementsController {
    * @return the latest measurements related to given installation
    */
   @GetMapping(URI_SELECTED_MEASUREMENTS)
-  public List<Measurement> getMeasurement(@PathVariable final Long feederInstallationId,
+  public List<Measurement> getMeasurement(
+      @PathVariable final Long feederInstallationId,
       @PathVariable final Feeder feeder) {
+
+    refreshData();
+    return measurementService.retrieveMeasurements(feederInstallationId, feeder);
+  }
+
+  // TODO: Data should be separately retrieved and persisted by some background job.
+  private void refreshData() {
     feederRegistry.getRegisteredDataClients()
         .forEach(HasUpdatableDataFeed::refreshDataIfRequired);
-
-    return measurementService.retrieveMeasurements(feederInstallationId, feeder);
   }
 }

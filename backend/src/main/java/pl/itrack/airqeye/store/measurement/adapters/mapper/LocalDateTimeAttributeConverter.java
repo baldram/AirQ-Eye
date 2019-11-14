@@ -1,4 +1,4 @@
-package pl.itrack.airqeye.store.measurement.mapper;
+package pl.itrack.airqeye.store.measurement.adapters.mapper;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;

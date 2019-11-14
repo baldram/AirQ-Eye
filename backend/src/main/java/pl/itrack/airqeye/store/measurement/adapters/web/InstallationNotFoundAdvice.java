@@ -1,4 +1,4 @@
-package pl.itrack.airqeye.store.measurement;
+package pl.itrack.airqeye.store.measurement.adapters.web;
 
 import lombok.Value;
 import org.springframework.http.HttpStatus;
@@ -6,7 +6,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import pl.itrack.airqeye.store.measurement.service.InstallationNotFoundException;
+import pl.itrack.airqeye.store.measurement.domain.service.InstallationNotFoundException;
 
 @RestControllerAdvice
 public class InstallationNotFoundAdvice {

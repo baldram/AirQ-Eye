@@ -23,9 +23,10 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import pl.itrack.airqeye.store.measurement.adapters.config.MeasurementProperties;
+import pl.itrack.airqeye.store.measurement.domain.service.InstallationNotFoundException;
 import pl.itrack.airqeye.store.measurement.entity.Installation;
 import pl.itrack.airqeye.store.measurement.entity.Measurement;
-import pl.itrack.airqeye.store.measurement.enumeration.Feeder;
+import pl.itrack.airqeye.store.measurement.domain.enumeration.Feeder;
 import pl.itrack.airqeye.store.measurement.repository.InstallationRepository;
 
 @RunWith(MockitoJUnitRunner.class)

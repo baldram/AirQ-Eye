@@ -21,7 +21,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import pl.itrack.airqeye.store.measurement.enumeration.Feeder;
+import pl.itrack.airqeye.store.measurement.domain.enumeration.Feeder;
 
 @Data
 @Builder(toBuilder = true)

@@ -1,6 +1,6 @@
-package pl.itrack.airqeye.store.measurement.enumeration;
+package pl.itrack.airqeye.store.measurement.domain.enumeration;
 
-import java.util.Arrays;
+import java.util.stream.Stream;
 
 public enum Country {
   AE, AL, AR, AT, AU, BA, BE, BG, BO, BY, CA, CD, CH, CL, CN, CR, CY, CZ, DE, DK, DO, ES, FI, FR,
@@ -14,7 +14,7 @@ public enum Country {
    * @return true if success, otherwise false
    */
   public static boolean contains(final String testedValue) {
-    return Arrays.stream(values())
+    return Stream.of(values())
         .map(Enum::name)
         .anyMatch(code -> code.equals(testedValue));
   }

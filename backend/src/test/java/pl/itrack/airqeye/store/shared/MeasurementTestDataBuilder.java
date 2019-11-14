@@ -1,4 +1,4 @@
-package pl.itrack.airqeye.store;
+package pl.itrack.airqeye.store.shared;
 
 import static java.util.Arrays.asList;
 
@@ -9,10 +9,10 @@ import pl.itrack.airqeye.store.measurement.entity.Location;
 import pl.itrack.airqeye.store.measurement.entity.Measurement;
 import pl.itrack.airqeye.store.measurement.entity.MeasurementValue;
 import pl.itrack.airqeye.store.measurement.entity.Sensor;
-import pl.itrack.airqeye.store.measurement.enumeration.Country;
-import pl.itrack.airqeye.store.measurement.enumeration.Feeder;
-import pl.itrack.airqeye.store.measurement.enumeration.MeasurementType;
-import pl.itrack.airqeye.store.measurement.enumeration.Province;
+import pl.itrack.airqeye.store.measurement.domain.enumeration.Country;
+import pl.itrack.airqeye.store.measurement.domain.enumeration.Feeder;
+import pl.itrack.airqeye.store.measurement.domain.enumeration.MeasurementType;
+import pl.itrack.airqeye.store.measurement.domain.enumeration.Province;
 
 public class MeasurementTestDataBuilder {
 

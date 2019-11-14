@@ -1,4 +1,4 @@
-package pl.itrack.airqeye.store;
+package pl.itrack.airqeye.store.measurement.adapters.web;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

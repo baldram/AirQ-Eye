@@ -16,7 +16,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 import pl.itrack.airqeye.store.dataclient.luftdaten.model.LuftdatenMeasurement;
-import pl.itrack.airqeye.store.measurement.enumeration.Country;
+import pl.itrack.airqeye.store.measurement.domain.enumeration.Country;
 
 class LuftdatenClientTest {
 

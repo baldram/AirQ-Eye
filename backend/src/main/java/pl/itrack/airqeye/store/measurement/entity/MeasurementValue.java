@@ -12,8 +12,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import pl.itrack.airqeye.store.measurement.enumeration.MeasurementType;
-import pl.itrack.airqeye.store.measurement.enumeration.MeasurementUnit;
+import pl.itrack.airqeye.store.measurement.domain.enumeration.MeasurementType;
+import pl.itrack.airqeye.store.measurement.domain.enumeration.MeasurementUnit;
 
 @Data
 @Builder(toBuilder = true)

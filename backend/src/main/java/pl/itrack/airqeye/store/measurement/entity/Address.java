@@ -7,8 +7,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import pl.itrack.airqeye.store.measurement.enumeration.Country;
-import pl.itrack.airqeye.store.measurement.enumeration.Province;
+import pl.itrack.airqeye.store.measurement.domain.enumeration.Country;
+import pl.itrack.airqeye.store.measurement.domain.enumeration.Province;
 
 @Data
 @Builder

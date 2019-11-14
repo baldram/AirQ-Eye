@@ -3,8 +3,8 @@ package pl.itrack.airqeye.store.measurement.repository;
 import static java.util.Arrays.asList;
 import static java.util.stream.Collectors.toList;
 import static org.assertj.core.api.Assertions.assertThat;
-import static pl.itrack.airqeye.store.MeasurementTestDataBuilder.prebuildInstallation;
-import static pl.itrack.airqeye.store.MeasurementTestDataBuilder.prebuildMeasurement;
+import static pl.itrack.airqeye.store.shared.MeasurementTestDataBuilder.prebuildInstallation;
+import static pl.itrack.airqeye.store.shared.MeasurementTestDataBuilder.prebuildMeasurement;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -16,7 +16,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import pl.itrack.airqeye.store.measurement.entity.Installation;
 import pl.itrack.airqeye.store.measurement.entity.Measurement;
-import pl.itrack.airqeye.store.measurement.enumeration.Feeder;
+import pl.itrack.airqeye.store.measurement.domain.enumeration.Feeder;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest

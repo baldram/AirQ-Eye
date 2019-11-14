@@ -1,16 +1,16 @@
 package pl.itrack.airqeye.store.dataclient.luftdaten.service;
 
 import java.util.List;
-import java.util.function.Supplier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.itrack.airqeye.store.dataclient.luftdaten.LuftdatenClient;
 import pl.itrack.airqeye.store.dataclient.luftdaten.mapper.MeasurementMapper;
+import pl.itrack.airqeye.store.measurement.domain.enumeration.Feeder;
 import pl.itrack.airqeye.store.measurement.entity.Measurement;
-import pl.itrack.airqeye.store.measurement.enumeration.Feeder;
-import pl.itrack.airqeye.store.measurement.service.HasUpdatableDataFeed;
+import pl.itrack.airqeye.store.measurement.domain.service.HasUpdatableDataFeed;
 import pl.itrack.airqeye.store.measurement.service.MeasurementService;
 
+@Transactional
 @Service
 public class LuftdatenService implements HasUpdatableDataFeed {
 
@@ -29,21 +29,24 @@ public class LuftdatenService implements HasUpdatableDataFeed {
     this.measurementService = measurementService;
   }
 
-  // TODO: Data should be separately retrieved and persisted by some background job.
-  @Override
-  @Transactional
-  public void refreshDataIfRequired() {
-    final Supplier<List<Measurement>> luftdatenFeed = this::retrieveData;
-    measurementService.refreshDataIfRequired(luftdatenFeed, Feeder.LUFTDATEN);
-  }
-
   /**
    * Calls Luftdaten data feed and converts retrieved data to entities ready for persistence.
    *
    * @return list of measurements
    */
+  @Override
   @Transactional(readOnly = true)
-  List<Measurement> retrieveData() {
+  public List<Measurement> retrieveData() {
     return measurementMapper.fromDtos(luftdatenClient.getMeasurements());
+  }
+
+  @Override
+  public MeasurementService getMeasurementService() {
+    return measurementService;
+  }
+
+  @Override
+  public Feeder getFeederType() {
+    return Feeder.LUFTDATEN;
   }
 }

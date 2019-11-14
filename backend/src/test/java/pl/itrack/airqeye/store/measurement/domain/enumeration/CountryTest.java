@@ -1,4 +1,4 @@
-package pl.itrack.airqeye.store.measurement.enumeration;
+package pl.itrack.airqeye.store.measurement.domain.enumeration;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

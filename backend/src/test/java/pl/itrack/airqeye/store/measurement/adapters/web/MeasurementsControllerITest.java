@@ -1,12 +1,12 @@
-package pl.itrack.airqeye.store;
+package pl.itrack.airqeye.store.measurement.adapters.web;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static pl.itrack.airqeye.store.MeasurementTestDataBuilder.prebuildInstallation;
-import static pl.itrack.airqeye.store.MeasurementTestDataBuilder.prebuildMeasurement;
+import static pl.itrack.airqeye.store.shared.MeasurementTestDataBuilder.prebuildInstallation;
+import static pl.itrack.airqeye.store.shared.MeasurementTestDataBuilder.prebuildMeasurement;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -38,8 +38,8 @@ import pl.itrack.airqeye.store.dataclient.luftdaten.LuftdatenClient;
 import pl.itrack.airqeye.store.dataclient.luftdaten.model.LuftdatenMeasurement;
 import pl.itrack.airqeye.store.measurement.entity.Measurement;
 import pl.itrack.airqeye.store.measurement.entity.MeasurementValue;
-import pl.itrack.airqeye.store.measurement.enumeration.Feeder;
-import pl.itrack.airqeye.store.measurement.enumeration.MeasurementType;
+import pl.itrack.airqeye.store.measurement.domain.enumeration.Feeder;
+import pl.itrack.airqeye.store.measurement.domain.enumeration.MeasurementType;
 import pl.itrack.airqeye.store.measurement.repository.InstallationRepository;
 
 @RunWith(SpringRunner.class)

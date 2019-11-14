@@ -1,4 +1,4 @@
-package pl.itrack.airqeye.store.measurement.service;
+package pl.itrack.airqeye.store.measurement.adapters.service;
 
 import static java.util.Collections.singletonList;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -30,7 +30,7 @@ import pl.itrack.airqeye.store.measurement.domain.enumeration.Feeder;
 import pl.itrack.airqeye.store.measurement.repository.InstallationRepository;
 
 @RunWith(MockitoJUnitRunner.class)
-public class MeasurementServiceTest {
+public class MeasurementServiceAdapterTest {
 
   private static final long INSTALLATION_ID = 123L;
   private static final long NOT_EXISTING_INSTALLATION_ID = 666L;
@@ -54,8 +54,8 @@ public class MeasurementServiceTest {
   private ArgumentCaptor<Feeder> feederCaptor;
 
   @InjectMocks
-  private MeasurementService measurementService =
-      new MeasurementService(installationRepository, measurementProperties);
+  private MeasurementServiceAdapter measurementService =
+      new MeasurementServiceAdapter(installationRepository, measurementProperties);
 
   @Before
   public void setUp() {

@@ -8,7 +8,7 @@ import pl.itrack.airqeye.store.dataclient.luftdaten.mapper.MeasurementMapper;
 import pl.itrack.airqeye.store.measurement.domain.enumeration.Feeder;
 import pl.itrack.airqeye.store.measurement.entity.Measurement;
 import pl.itrack.airqeye.store.measurement.domain.service.HasUpdatableDataFeed;
-import pl.itrack.airqeye.store.measurement.service.MeasurementService;
+import pl.itrack.airqeye.store.measurement.adapters.service.MeasurementServiceAdapter;
 
 @Transactional
 @Service
@@ -18,12 +18,12 @@ public class LuftdatenService implements HasUpdatableDataFeed {
 
   private MeasurementMapper measurementMapper;
 
-  private MeasurementService measurementService;
+  private MeasurementServiceAdapter measurementService;
 
   public LuftdatenService(
       final LuftdatenClient luftdatenClient,
       final MeasurementMapper measurementMapper,
-      final MeasurementService measurementService) {
+      final MeasurementServiceAdapter measurementService) {
     this.luftdatenClient = luftdatenClient;
     this.measurementMapper = measurementMapper;
     this.measurementService = measurementService;
@@ -41,7 +41,7 @@ public class LuftdatenService implements HasUpdatableDataFeed {
   }
 
   @Override
-  public MeasurementService getMeasurementService() {
+  public MeasurementServiceAdapter getMeasurementService() {
     return measurementService;
   }
 

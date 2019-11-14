@@ -8,7 +8,7 @@ import pl.itrack.airqeye.store.measurement.domain.enumeration.Feeder;
 import pl.itrack.airqeye.store.measurement.domain.service.FeederRegistry;
 import pl.itrack.airqeye.store.measurement.domain.service.HasUpdatableDataFeed;
 import pl.itrack.airqeye.store.measurement.entity.Measurement;
-import pl.itrack.airqeye.store.measurement.service.MeasurementService;
+import pl.itrack.airqeye.store.measurement.adapters.service.MeasurementServiceAdapter;
 
 @RestController
 public class MeasurementsController {
@@ -19,9 +19,9 @@ public class MeasurementsController {
 
   private FeederRegistry feederRegistry;
 
-  private MeasurementService measurementService;
+  private MeasurementServiceAdapter measurementService;
 
-  public MeasurementsController(FeederRegistry feeders, MeasurementService service) {
+  public MeasurementsController(FeederRegistry feeders, MeasurementServiceAdapter service) {
     this.feederRegistry = feeders;
     this.measurementService = service;
   }

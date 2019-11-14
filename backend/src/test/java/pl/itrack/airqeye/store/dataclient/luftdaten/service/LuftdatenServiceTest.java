@@ -21,7 +21,7 @@ import pl.itrack.airqeye.store.dataclient.luftdaten.mapper.MeasurementMapper;
 import pl.itrack.airqeye.store.dataclient.luftdaten.model.LuftdatenMeasurement;
 import pl.itrack.airqeye.store.measurement.entity.Measurement;
 import pl.itrack.airqeye.store.measurement.domain.enumeration.Feeder;
-import pl.itrack.airqeye.store.measurement.service.MeasurementService;
+import pl.itrack.airqeye.store.measurement.adapters.service.MeasurementServiceAdapter;
 
 @RunWith(MockitoJUnitRunner.class)
 public class LuftdatenServiceTest {
@@ -33,7 +33,7 @@ public class LuftdatenServiceTest {
   private MeasurementMapper measurementMapper;
 
   @Mock
-  private MeasurementService measurementService;
+  private MeasurementServiceAdapter measurementService;
 
   @Captor
   private ArgumentCaptor<List<LuftdatenMeasurement>> luftdatenMeasurementsCaptor;

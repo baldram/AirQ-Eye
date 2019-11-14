@@ -23,10 +23,10 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import pl.itrack.airqeye.store.measurement.adapters.config.MeasurementPropertiesAdapter;
+import pl.itrack.airqeye.store.measurement.domain.enumeration.Feeder;
 import pl.itrack.airqeye.store.measurement.domain.service.InstallationNotFoundException;
 import pl.itrack.airqeye.store.measurement.entity.Installation;
 import pl.itrack.airqeye.store.measurement.entity.Measurement;
-import pl.itrack.airqeye.store.measurement.domain.enumeration.Feeder;
 import pl.itrack.airqeye.store.measurement.repository.InstallationRepository;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -194,11 +194,9 @@ public class MeasurementServiceAdapterTest {
   @Test
   public void noUpdateRequiredIfActualData() {
     // Given
-    // Date on border of validity, but still refresh not required.
-    // This test helps to verify whether time zone is considered while calculating validity.
-    final LocalDateTime dateInValidRange = LocalDateTime.now(ZoneOffset.UTC)
+    final LocalDateTime dateWithinValidRange = LocalDateTime.now(ZoneOffset.UTC)
         .minusMinutes(DATA_REFRESH_RANGE - 1);
-    mockLatestUpdateDateResponse(dateInValidRange);
+    mockLatestUpdateDateResponse(dateWithinValidRange);
 
     final Installation installation = Installation.builder().id(3L).build();
     final Supplier<List<Measurement>> measurementSupplier = () -> List

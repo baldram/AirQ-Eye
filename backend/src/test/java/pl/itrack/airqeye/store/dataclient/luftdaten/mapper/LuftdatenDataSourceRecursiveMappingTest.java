@@ -13,11 +13,11 @@ import pl.itrack.airqeye.store.dataclient.luftdaten.model.LuftdatenMeasurement;
 import pl.itrack.airqeye.store.dataclient.luftdaten.model.Sensor;
 import pl.itrack.airqeye.store.dataclient.luftdaten.model.SensorData;
 import pl.itrack.airqeye.store.dataclient.luftdaten.model.SensorType;
-import pl.itrack.airqeye.store.measurement.entity.Measurement;
-import pl.itrack.airqeye.store.measurement.enumeration.Country;
-import pl.itrack.airqeye.store.measurement.enumeration.Feeder;
-import pl.itrack.airqeye.store.measurement.enumeration.MeasurementType;
-import pl.itrack.airqeye.store.measurement.enumeration.MeasurementUnit;
+import pl.itrack.airqeye.store.measurement.domain.model.Measurement;
+import pl.itrack.airqeye.store.measurement.domain.enumeration.Country;
+import pl.itrack.airqeye.store.measurement.domain.enumeration.Feeder;
+import pl.itrack.airqeye.store.measurement.domain.enumeration.MeasurementType;
+import pl.itrack.airqeye.store.measurement.domain.enumeration.MeasurementUnit;
 
 class LuftdatenDataSourceRecursiveMappingTest {
 

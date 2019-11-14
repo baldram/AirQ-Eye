@@ -3,8 +3,8 @@ package pl.itrack.airqeye.store.dataclient.luftdaten.mapper;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import pl.itrack.airqeye.store.dataclient.luftdaten.model.LuftdatenMeasurement;
-import pl.itrack.airqeye.store.measurement.entity.Installation;
-import pl.itrack.airqeye.store.measurement.mapper.DefaultMapperConfig;
+import pl.itrack.airqeye.store.measurement.domain.model.Installation;
+import pl.itrack.airqeye.store.measurement.infrastructure.mapper.DefaultMapperConfig;
 
 @Mapper(config = DefaultMapperConfig.class,
     uses = {LocationMapper.class, AddressMapper.class, SensorMapper.class})

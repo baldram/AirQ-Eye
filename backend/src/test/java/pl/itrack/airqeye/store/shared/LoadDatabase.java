@@ -1,16 +1,16 @@
 package pl.itrack.airqeye.store.shared;
 
-import static pl.itrack.airqeye.store.MeasurementTestDataBuilder.prebuildInstallation;
-import static pl.itrack.airqeye.store.MeasurementTestDataBuilder.prebuildMeasurement;
+import static pl.itrack.airqeye.store.shared.MeasurementTestDataBuilder.prebuildInstallation;
+import static pl.itrack.airqeye.store.shared.MeasurementTestDataBuilder.prebuildMeasurement;
 
 import java.time.LocalDateTime;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import pl.itrack.airqeye.store.measurement.entity.Measurement;
-import pl.itrack.airqeye.store.measurement.enumeration.Feeder;
-import pl.itrack.airqeye.store.measurement.repository.InstallationRepository;
+import pl.itrack.airqeye.store.measurement.domain.enumeration.Feeder;
+import pl.itrack.airqeye.store.measurement.domain.model.Measurement;
+import pl.itrack.airqeye.store.measurement.infrastructure.repository.InstallationRepository;
 
 @Configuration
 @Slf4j

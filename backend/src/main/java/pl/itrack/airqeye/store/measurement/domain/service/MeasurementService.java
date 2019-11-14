@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.List;
 import java.util.function.Supplier;
-import pl.itrack.airqeye.store.measurement.adapters.config.MeasurementProperties;
+import pl.itrack.airqeye.store.measurement.domain.config.MeasurementProperties;
 import pl.itrack.airqeye.store.measurement.domain.enumeration.Feeder;
 import pl.itrack.airqeye.store.measurement.entity.Measurement;
 

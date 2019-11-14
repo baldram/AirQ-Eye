@@ -8,7 +8,7 @@ import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import pl.itrack.airqeye.store.measurement.adapters.config.MeasurementProperties;
+import pl.itrack.airqeye.store.measurement.adapters.config.MeasurementPropertiesAdapter;
 import pl.itrack.airqeye.store.measurement.domain.enumeration.Feeder;
 import pl.itrack.airqeye.store.measurement.domain.service.InstallationNotFoundException;
 import pl.itrack.airqeye.store.measurement.domain.service.MeasurementService;
@@ -22,11 +22,11 @@ public class MeasurementServiceAdapter implements MeasurementService {
 
   private InstallationRepository installationRepository;
 
-  private MeasurementProperties measurementProperties;
+  private MeasurementPropertiesAdapter measurementProperties;
 
   public MeasurementServiceAdapter(
       InstallationRepository installationRepository,
-      MeasurementProperties properties) {
+      MeasurementPropertiesAdapter properties) {
     this.installationRepository = installationRepository;
     this.measurementProperties = properties;
   }
@@ -100,7 +100,7 @@ public class MeasurementServiceAdapter implements MeasurementService {
   }
 
   @Override
-  public MeasurementProperties getMeasurementProperties() {
+  public MeasurementPropertiesAdapter getMeasurementProperties() {
     return measurementProperties;
   }
 }

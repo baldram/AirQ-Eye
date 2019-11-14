@@ -22,7 +22,7 @@ import org.mockito.Captor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
-import pl.itrack.airqeye.store.measurement.adapters.config.MeasurementProperties;
+import pl.itrack.airqeye.store.measurement.adapters.config.MeasurementPropertiesAdapter;
 import pl.itrack.airqeye.store.measurement.domain.service.InstallationNotFoundException;
 import pl.itrack.airqeye.store.measurement.entity.Installation;
 import pl.itrack.airqeye.store.measurement.entity.Measurement;
@@ -42,7 +42,7 @@ public class MeasurementServiceAdapterTest {
   private InstallationRepository installationRepository;
 
   @Mock
-  private MeasurementProperties measurementProperties;
+  private MeasurementPropertiesAdapter measurementProperties;
 
   @Captor
   private ArgumentCaptor<Long> installationIdCapture;

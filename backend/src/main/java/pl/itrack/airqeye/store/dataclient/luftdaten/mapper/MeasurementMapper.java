@@ -18,7 +18,7 @@ import pl.itrack.airqeye.store.dataclient.luftdaten.model.LuftdatenMeasurement;
 import pl.itrack.airqeye.store.dataclient.luftdaten.model.SensorData;
 import pl.itrack.airqeye.store.measurement.domain.model.Measurement;
 import pl.itrack.airqeye.store.measurement.domain.enumeration.Country;
-import pl.itrack.airqeye.store.measurement.adapters.mapper.DefaultMapperConfig;
+import pl.itrack.airqeye.store.measurement.infrastructure.mapper.DefaultMapperConfig;
 
 @Mapper(config = DefaultMapperConfig.class,
     uses = {MeasurementValueMapper.class, InstallationMapper.class})

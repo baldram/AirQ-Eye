@@ -1,4 +1,4 @@
-package pl.itrack.airqeye.store.measurement.adapters.web;
+package pl.itrack.airqeye.store.measurement.infrastructure.web;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
@@ -40,7 +40,7 @@ import pl.itrack.airqeye.store.measurement.domain.enumeration.Feeder;
 import pl.itrack.airqeye.store.measurement.domain.enumeration.MeasurementType;
 import pl.itrack.airqeye.store.measurement.domain.model.Measurement;
 import pl.itrack.airqeye.store.measurement.domain.model.MeasurementValue;
-import pl.itrack.airqeye.store.measurement.adapters.repository.InstallationRepository;
+import pl.itrack.airqeye.store.measurement.infrastructure.repository.InstallationRepository;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest

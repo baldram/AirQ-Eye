@@ -1,4 +1,4 @@
-package pl.itrack.airqeye.store.measurement.adapters.web;
+package pl.itrack.airqeye.store.measurement.infrastructure.web;
 
 import lombok.Value;
 import org.springframework.http.HttpStatus;

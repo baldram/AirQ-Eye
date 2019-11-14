@@ -14,7 +14,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import pl.itrack.airqeye.store.measurement.adapters.repository.InstallationRepository;
+import pl.itrack.airqeye.store.measurement.infrastructure.repository.InstallationRepository;
 import pl.itrack.airqeye.store.measurement.domain.model.Installation;
 import pl.itrack.airqeye.store.measurement.domain.model.Measurement;
 import pl.itrack.airqeye.store.measurement.domain.enumeration.Feeder;

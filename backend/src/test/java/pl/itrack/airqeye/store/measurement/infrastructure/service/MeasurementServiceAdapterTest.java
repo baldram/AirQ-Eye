@@ -1,4 +1,4 @@
-package pl.itrack.airqeye.store.measurement.adapters.service;
+package pl.itrack.airqeye.store.measurement.infrastructure.service;
 
 import static java.util.Collections.singletonList;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -22,12 +22,12 @@ import org.mockito.Captor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
-import pl.itrack.airqeye.store.measurement.adapters.config.MeasurementPropertiesAdapter;
+import pl.itrack.airqeye.store.measurement.infrastructure.config.MeasurementPropertiesAdapter;
 import pl.itrack.airqeye.store.measurement.domain.enumeration.Feeder;
 import pl.itrack.airqeye.store.measurement.domain.service.InstallationNotFoundException;
 import pl.itrack.airqeye.store.measurement.domain.model.Installation;
 import pl.itrack.airqeye.store.measurement.domain.model.Measurement;
-import pl.itrack.airqeye.store.measurement.adapters.repository.InstallationRepository;
+import pl.itrack.airqeye.store.measurement.infrastructure.repository.InstallationRepository;
 
 @RunWith(MockitoJUnitRunner.class)
 public class MeasurementServiceAdapterTest {

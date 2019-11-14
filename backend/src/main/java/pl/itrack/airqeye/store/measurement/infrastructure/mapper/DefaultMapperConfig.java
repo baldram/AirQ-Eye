@@ -1,4 +1,4 @@
-package pl.itrack.airqeye.store.measurement.adapters.mapper;
+package pl.itrack.airqeye.store.measurement.infrastructure.mapper;
 
 import org.mapstruct.InjectionStrategy;
 import org.mapstruct.MapperConfig;

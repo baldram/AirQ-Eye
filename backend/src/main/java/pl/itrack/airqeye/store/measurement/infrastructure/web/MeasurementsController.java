@@ -1,4 +1,4 @@
-package pl.itrack.airqeye.store.measurement.adapters.web;
+package pl.itrack.airqeye.store.measurement.infrastructure.web;
 
 import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,7 +8,7 @@ import pl.itrack.airqeye.store.measurement.domain.enumeration.Feeder;
 import pl.itrack.airqeye.store.measurement.domain.service.FeederRegistry;
 import pl.itrack.airqeye.store.measurement.domain.service.HasUpdatableDataFeed;
 import pl.itrack.airqeye.store.measurement.domain.model.Measurement;
-import pl.itrack.airqeye.store.measurement.adapters.service.MeasurementServiceAdapter;
+import pl.itrack.airqeye.store.measurement.infrastructure.service.MeasurementServiceAdapter;
 
 @RestController
 public class MeasurementsController {

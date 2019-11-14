@@ -1,4 +1,4 @@
-package pl.itrack.airqeye.store.measurement.adapters.config;
+package pl.itrack.airqeye.store.measurement.infrastructure.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;

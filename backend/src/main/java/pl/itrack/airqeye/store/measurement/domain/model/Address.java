@@ -1,4 +1,4 @@
-package pl.itrack.airqeye.store.measurement.entity;
+package pl.itrack.airqeye.store.measurement.domain.model;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;

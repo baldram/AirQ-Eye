@@ -1,4 +1,4 @@
-package pl.itrack.airqeye.store.measurement.entity;
+package pl.itrack.airqeye.store.measurement.domain.model;
 
 import static java.util.Arrays.asList;
 import static org.assertj.core.api.Assertions.assertThat;

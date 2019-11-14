@@ -7,7 +7,7 @@ import java.util.List;
 import org.junit.Test;
 import org.mapstruct.factory.Mappers;
 import pl.itrack.airqeye.store.dataclient.luftdaten.model.SensorData;
-import pl.itrack.airqeye.store.measurement.entity.MeasurementValue;
+import pl.itrack.airqeye.store.measurement.domain.model.MeasurementValue;
 import pl.itrack.airqeye.store.measurement.domain.enumeration.MeasurementType;
 import pl.itrack.airqeye.store.measurement.domain.enumeration.MeasurementUnit;
 

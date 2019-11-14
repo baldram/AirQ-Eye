@@ -1,4 +1,4 @@
-package pl.itrack.airqeye.store.measurement.entity;
+package pl.itrack.airqeye.store.measurement.domain.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.Column;

@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.function.Supplier;
 import pl.itrack.airqeye.store.measurement.domain.config.MeasurementProperties;
 import pl.itrack.airqeye.store.measurement.domain.enumeration.Feeder;
-import pl.itrack.airqeye.store.measurement.entity.Measurement;
+import pl.itrack.airqeye.store.measurement.domain.model.Measurement;
 
 /**
  * The main service handling the measurement related processes.

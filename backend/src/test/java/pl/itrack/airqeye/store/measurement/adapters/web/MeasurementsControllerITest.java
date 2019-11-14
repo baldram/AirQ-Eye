@@ -38,8 +38,8 @@ import pl.itrack.airqeye.store.dataclient.luftdaten.LuftdatenClient;
 import pl.itrack.airqeye.store.dataclient.luftdaten.model.LuftdatenMeasurement;
 import pl.itrack.airqeye.store.measurement.domain.enumeration.Feeder;
 import pl.itrack.airqeye.store.measurement.domain.enumeration.MeasurementType;
-import pl.itrack.airqeye.store.measurement.entity.Measurement;
-import pl.itrack.airqeye.store.measurement.entity.MeasurementValue;
+import pl.itrack.airqeye.store.measurement.domain.model.Measurement;
+import pl.itrack.airqeye.store.measurement.domain.model.MeasurementValue;
 import pl.itrack.airqeye.store.measurement.adapters.repository.InstallationRepository;
 
 @RunWith(SpringRunner.class)

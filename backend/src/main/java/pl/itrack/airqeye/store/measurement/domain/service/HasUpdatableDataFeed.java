@@ -2,7 +2,7 @@ package pl.itrack.airqeye.store.measurement.domain.service;
 
 import java.util.List;
 import pl.itrack.airqeye.store.measurement.domain.enumeration.Feeder;
-import pl.itrack.airqeye.store.measurement.entity.Measurement;
+import pl.itrack.airqeye.store.measurement.domain.model.Measurement;
 
 public interface HasUpdatableDataFeed {
 

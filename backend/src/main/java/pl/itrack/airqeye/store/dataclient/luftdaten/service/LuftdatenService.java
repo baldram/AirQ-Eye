@@ -6,7 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import pl.itrack.airqeye.store.dataclient.luftdaten.LuftdatenClient;
 import pl.itrack.airqeye.store.dataclient.luftdaten.mapper.MeasurementMapper;
 import pl.itrack.airqeye.store.measurement.domain.enumeration.Feeder;
-import pl.itrack.airqeye.store.measurement.entity.Measurement;
+import pl.itrack.airqeye.store.measurement.domain.model.Measurement;
 import pl.itrack.airqeye.store.measurement.domain.service.HasUpdatableDataFeed;
 import pl.itrack.airqeye.store.measurement.adapters.service.MeasurementServiceAdapter;
 

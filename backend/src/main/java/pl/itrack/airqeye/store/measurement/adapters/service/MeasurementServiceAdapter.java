@@ -12,8 +12,8 @@ import pl.itrack.airqeye.store.measurement.adapters.config.MeasurementProperties
 import pl.itrack.airqeye.store.measurement.domain.enumeration.Feeder;
 import pl.itrack.airqeye.store.measurement.domain.service.InstallationNotFoundException;
 import pl.itrack.airqeye.store.measurement.domain.service.MeasurementService;
-import pl.itrack.airqeye.store.measurement.entity.Installation;
-import pl.itrack.airqeye.store.measurement.entity.Measurement;
+import pl.itrack.airqeye.store.measurement.domain.model.Installation;
+import pl.itrack.airqeye.store.measurement.domain.model.Measurement;
 import pl.itrack.airqeye.store.measurement.adapters.repository.InstallationRepository;
 
 @Service

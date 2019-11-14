@@ -39,9 +39,9 @@ class MeasurementServiceTest {
     // Given
     // Date on border of validity, but still refresh not required.
     // This test helps to verify whether time zone is considered while calculating validity.
-    final LocalDateTime dateInValidRange = LocalDateTime.now(ZoneOffset.UTC)
+    final LocalDateTime dateWithinValidRange = LocalDateTime.now(ZoneOffset.UTC)
         .minusMinutes(DATA_REFRESH_RANGE - 1);
-    when(service.getLatestUpdate(any())).thenReturn(dateInValidRange);
+    when(service.getLatestUpdate(any())).thenReturn(dateWithinValidRange);
 
     // When
     boolean result = service.isUpdateRequired(Feeder.AIRLY);

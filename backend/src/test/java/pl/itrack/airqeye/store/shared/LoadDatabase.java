@@ -8,9 +8,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import pl.itrack.airqeye.store.measurement.entity.Measurement;
 import pl.itrack.airqeye.store.measurement.domain.enumeration.Feeder;
-import pl.itrack.airqeye.store.measurement.repository.InstallationRepository;
+import pl.itrack.airqeye.store.measurement.entity.Measurement;
+import pl.itrack.airqeye.store.measurement.adapters.repository.InstallationRepository;
 
 @Configuration
 @Slf4j

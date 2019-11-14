@@ -14,7 +14,7 @@ import pl.itrack.airqeye.store.measurement.domain.service.InstallationNotFoundEx
 import pl.itrack.airqeye.store.measurement.domain.service.MeasurementService;
 import pl.itrack.airqeye.store.measurement.entity.Installation;
 import pl.itrack.airqeye.store.measurement.entity.Measurement;
-import pl.itrack.airqeye.store.measurement.repository.InstallationRepository;
+import pl.itrack.airqeye.store.measurement.adapters.repository.InstallationRepository;
 
 @Service
 @Transactional

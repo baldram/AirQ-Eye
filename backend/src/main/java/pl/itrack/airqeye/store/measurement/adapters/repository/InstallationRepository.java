@@ -1,4 +1,4 @@
-package pl.itrack.airqeye.store.measurement.repository;
+package pl.itrack.airqeye.store.measurement.adapters.repository;
 
 import java.time.LocalDateTime;
 import java.util.List;

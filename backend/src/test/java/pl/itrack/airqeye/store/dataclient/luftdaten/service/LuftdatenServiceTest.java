@@ -19,8 +19,8 @@ import org.mockito.junit.MockitoJUnitRunner;
 import pl.itrack.airqeye.store.dataclient.luftdaten.LuftdatenClient;
 import pl.itrack.airqeye.store.dataclient.luftdaten.mapper.MeasurementMapper;
 import pl.itrack.airqeye.store.dataclient.luftdaten.model.LuftdatenMeasurement;
-import pl.itrack.airqeye.store.measurement.domain.model.Measurement;
 import pl.itrack.airqeye.store.measurement.domain.enumeration.Feeder;
+import pl.itrack.airqeye.store.measurement.domain.model.Measurement;
 import pl.itrack.airqeye.store.measurement.infrastructure.service.MeasurementServiceAdapter;
 
 @RunWith(MockitoJUnitRunner.class)

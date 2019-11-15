@@ -21,8 +21,8 @@ import pl.itrack.airqeye.store.dataclient.luftdaten.model.LuftdatenMeasurement;
 import pl.itrack.airqeye.store.dataclient.luftdaten.model.Sensor;
 import pl.itrack.airqeye.store.dataclient.luftdaten.model.SensorData;
 import pl.itrack.airqeye.store.dataclient.luftdaten.model.SensorType;
-import pl.itrack.airqeye.store.measurement.domain.model.Measurement;
 import pl.itrack.airqeye.store.measurement.domain.enumeration.Country;
+import pl.itrack.airqeye.store.measurement.domain.model.Measurement;
 
 /**
  * This test class check only correctness of data filtering for measurements. For full test of

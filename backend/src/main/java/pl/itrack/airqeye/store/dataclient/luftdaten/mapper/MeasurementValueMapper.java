@@ -11,9 +11,9 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
 import pl.itrack.airqeye.store.dataclient.luftdaten.model.SensorData;
-import pl.itrack.airqeye.store.measurement.domain.model.MeasurementValue;
 import pl.itrack.airqeye.store.measurement.domain.enumeration.MeasurementType;
 import pl.itrack.airqeye.store.measurement.domain.enumeration.MeasurementUnit;
+import pl.itrack.airqeye.store.measurement.domain.model.MeasurementValue;
 import pl.itrack.airqeye.store.measurement.infrastructure.mapper.DefaultMapperConfig;
 
 @Mapper(config = DefaultMapperConfig.class)

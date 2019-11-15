@@ -3,16 +3,16 @@ package pl.itrack.airqeye.store.shared;
 import static java.util.Arrays.asList;
 
 import java.time.LocalDateTime;
+import pl.itrack.airqeye.store.measurement.domain.enumeration.Country;
+import pl.itrack.airqeye.store.measurement.domain.enumeration.Feeder;
+import pl.itrack.airqeye.store.measurement.domain.enumeration.MeasurementType;
+import pl.itrack.airqeye.store.measurement.domain.enumeration.Province;
 import pl.itrack.airqeye.store.measurement.domain.model.Address;
 import pl.itrack.airqeye.store.measurement.domain.model.Installation;
 import pl.itrack.airqeye.store.measurement.domain.model.Location;
 import pl.itrack.airqeye.store.measurement.domain.model.Measurement;
 import pl.itrack.airqeye.store.measurement.domain.model.MeasurementValue;
 import pl.itrack.airqeye.store.measurement.domain.model.Sensor;
-import pl.itrack.airqeye.store.measurement.domain.enumeration.Country;
-import pl.itrack.airqeye.store.measurement.domain.enumeration.Feeder;
-import pl.itrack.airqeye.store.measurement.domain.enumeration.MeasurementType;
-import pl.itrack.airqeye.store.measurement.domain.enumeration.Province;
 
 public class MeasurementTestDataBuilder {
 

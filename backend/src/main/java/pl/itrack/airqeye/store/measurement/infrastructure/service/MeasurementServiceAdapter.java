@@ -8,12 +8,12 @@ import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import pl.itrack.airqeye.store.measurement.infrastructure.config.MeasurementPropertiesAdapter;
 import pl.itrack.airqeye.store.measurement.domain.enumeration.Feeder;
-import pl.itrack.airqeye.store.measurement.domain.service.InstallationNotFoundException;
-import pl.itrack.airqeye.store.measurement.domain.service.MeasurementService;
 import pl.itrack.airqeye.store.measurement.domain.model.Installation;
 import pl.itrack.airqeye.store.measurement.domain.model.Measurement;
+import pl.itrack.airqeye.store.measurement.domain.service.InstallationNotFoundException;
+import pl.itrack.airqeye.store.measurement.domain.service.MeasurementService;
+import pl.itrack.airqeye.store.measurement.infrastructure.config.MeasurementPropertiesAdapter;
 import pl.itrack.airqeye.store.measurement.infrastructure.repository.InstallationRepository;
 
 @Service
